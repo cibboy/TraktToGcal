@@ -67,7 +67,7 @@
             // ProceedButton
             // 
             this.ProceedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProceedButton.Location = new System.Drawing.Point(287, 206);
+            this.ProceedButton.Location = new System.Drawing.Point(279, 206);
             this.ProceedButton.Name = "ProceedButton";
             this.ProceedButton.Size = new System.Drawing.Size(75, 23);
             this.ProceedButton.TabIndex = 7;
@@ -83,7 +83,8 @@
             this.ExcludeTextBox.Location = new System.Drawing.Point(96, 71);
             this.ExcludeTextBox.Multiline = true;
             this.ExcludeTextBox.Name = "ExcludeTextBox";
-            this.ExcludeTextBox.Size = new System.Drawing.Size(254, 45);
+            this.ExcludeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ExcludeTextBox.Size = new System.Drawing.Size(246, 45);
             this.ExcludeTextBox.TabIndex = 2;
             // 
             // CalendarCombo
@@ -93,13 +94,13 @@
             this.CalendarCombo.FormattingEnabled = true;
             this.CalendarCombo.Location = new System.Drawing.Point(96, 27);
             this.CalendarCombo.Name = "CalendarCombo";
-            this.CalendarCombo.Size = new System.Drawing.Size(173, 21);
+            this.CalendarCombo.Size = new System.Drawing.Size(165, 21);
             this.CalendarCombo.TabIndex = 5;
             // 
             // SearchButton
             // 
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(275, 25);
+            this.SearchButton.Location = new System.Drawing.Point(267, 25);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 6;
@@ -120,7 +121,7 @@
             this.TraktGroupBox.Controls.Add(this.ExcludeTextBox);
             this.TraktGroupBox.Location = new System.Drawing.Point(12, 12);
             this.TraktGroupBox.Name = "TraktGroupBox";
-            this.TraktGroupBox.Size = new System.Drawing.Size(356, 125);
+            this.TraktGroupBox.Size = new System.Drawing.Size(348, 125);
             this.TraktGroupBox.TabIndex = 8;
             this.TraktGroupBox.TabStop = false;
             this.TraktGroupBox.Text = "Trakt";
@@ -161,7 +162,7 @@
             this.GcalGroupBox.Controls.Add(this.CalendarCombo);
             this.GcalGroupBox.Location = new System.Drawing.Point(12, 143);
             this.GcalGroupBox.Name = "GcalGroupBox";
-            this.GcalGroupBox.Size = new System.Drawing.Size(356, 57);
+            this.GcalGroupBox.Size = new System.Drawing.Size(348, 57);
             this.GcalGroupBox.TabIndex = 9;
             this.GcalGroupBox.TabStop = false;
             this.GcalGroupBox.Text = "Google Calendar";
@@ -183,7 +184,7 @@
             this.StatusProgress});
             this.statusStrip1.Location = new System.Drawing.Point(0, 239);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(380, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(372, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -196,7 +197,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(323, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(271, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // StatusProgress
@@ -210,11 +211,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 261);
+            this.ClientSize = new System.Drawing.Size(372, 261);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.GcalGroupBox);
             this.Controls.Add(this.TraktGroupBox);
             this.Controls.Add(this.ProceedButton);
+            this.MinimumSize = new System.Drawing.Size(344, 299);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trakt To Google Calendar";

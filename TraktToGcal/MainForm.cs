@@ -36,7 +36,10 @@ namespace TraktToGcal {
             ExcludeTextBox.Text = Properties.Settings.Default.Exclusions.Replace(";", Environment.NewLine);
 
             // Calendar property.
-            CalendarCombo.Text = Properties.Settings.Default.CalendarName;
+            if (Properties.Settings.Default.CalendarName != "") {
+                CalendarCombo.Items.Add(Properties.Settings.Default.CalendarName);
+                CalendarCombo.Text = Properties.Settings.Default.CalendarName;
+            }
         }
 
         private async void ProceedButton_Click(object sender, EventArgs e) {
