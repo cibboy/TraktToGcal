@@ -1,0 +1,4 @@
+﻿-- CHANGELOG --
+
+1.0.2.0
+First complete version. It includes pretty much everything - at least the basic functionalities. It still misses exception/error handling, better async handling and a real application icon.

@@ -25,10 +25,28 @@ namespace TraktToGcal.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string GoogleUsername {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int DefaultLookaheadDays {
             get {
-                return ((string)(this["GoogleUsername"]));
+                return ((int)(this["DefaultLookaheadDays"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Exclusions {
+            get {
+                return ((string)(this["Exclusions"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CalendarName {
+            get {
+                return ((string)(this["CalendarName"]));
             }
         }
     }
