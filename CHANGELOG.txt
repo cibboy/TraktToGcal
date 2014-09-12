@@ -2,3 +2,6 @@
 
 1.0.2.0
 First complete version. It includes pretty much everything - at least the basic functionalities. It still misses exception/error handling, better async handling and a real application icon.
+
+1.1.3.0
+Added error handling on main functions with custom error form. Not tested on errors on asyn calls.
