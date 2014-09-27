@@ -30,6 +30,7 @@
             this.CalendarCombo = new System.Windows.Forms.ComboBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.TraktGroupBox = new System.Windows.Forms.GroupBox();
+            this.IncludeSpecialsCheck = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.AllDayCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -67,7 +69,7 @@
             // ProceedButton
             // 
             this.ProceedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProceedButton.Location = new System.Drawing.Point(279, 206);
+            this.ProceedButton.Location = new System.Drawing.Point(279, 262);
             this.ProceedButton.Name = "ProceedButton";
             this.ProceedButton.Size = new System.Drawing.Size(75, 23);
             this.ProceedButton.TabIndex = 7;
@@ -84,7 +86,7 @@
             this.ExcludeTextBox.Multiline = true;
             this.ExcludeTextBox.Name = "ExcludeTextBox";
             this.ExcludeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ExcludeTextBox.Size = new System.Drawing.Size(246, 45);
+            this.ExcludeTextBox.Size = new System.Drawing.Size(246, 61);
             this.ExcludeTextBox.TabIndex = 2;
             // 
             // CalendarCombo
@@ -95,7 +97,7 @@
             this.CalendarCombo.Location = new System.Drawing.Point(96, 27);
             this.CalendarCombo.Name = "CalendarCombo";
             this.CalendarCombo.Size = new System.Drawing.Size(165, 21);
-            this.CalendarCombo.TabIndex = 5;
+            this.CalendarCombo.TabIndex = 4;
             // 
             // SearchButton
             // 
@@ -103,7 +105,7 @@
             this.SearchButton.Location = new System.Drawing.Point(267, 25);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
-            this.SearchButton.TabIndex = 6;
+            this.SearchButton.TabIndex = 5;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
@@ -113,6 +115,7 @@
             this.TraktGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TraktGroupBox.Controls.Add(this.IncludeSpecialsCheck);
             this.TraktGroupBox.Controls.Add(this.label3);
             this.TraktGroupBox.Controls.Add(this.label2);
             this.TraktGroupBox.Controls.Add(this.label1);
@@ -121,10 +124,21 @@
             this.TraktGroupBox.Controls.Add(this.ExcludeTextBox);
             this.TraktGroupBox.Location = new System.Drawing.Point(12, 12);
             this.TraktGroupBox.Name = "TraktGroupBox";
-            this.TraktGroupBox.Size = new System.Drawing.Size(348, 125);
+            this.TraktGroupBox.Size = new System.Drawing.Size(348, 161);
             this.TraktGroupBox.TabIndex = 8;
             this.TraktGroupBox.TabStop = false;
             this.TraktGroupBox.Text = "Trakt";
+            // 
+            // IncludeSpecialsCheck
+            // 
+            this.IncludeSpecialsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.IncludeSpecialsCheck.AutoSize = true;
+            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(96, 138);
+            this.IncludeSpecialsCheck.Name = "IncludeSpecialsCheck";
+            this.IncludeSpecialsCheck.Size = new System.Drawing.Size(104, 17);
+            this.IncludeSpecialsCheck.TabIndex = 3;
+            this.IncludeSpecialsCheck.Text = "Include Specials";
+            this.IncludeSpecialsCheck.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -157,12 +171,13 @@
             // 
             this.GcalGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GcalGroupBox.Controls.Add(this.AllDayCheck);
             this.GcalGroupBox.Controls.Add(this.label5);
             this.GcalGroupBox.Controls.Add(this.SearchButton);
             this.GcalGroupBox.Controls.Add(this.CalendarCombo);
-            this.GcalGroupBox.Location = new System.Drawing.Point(12, 143);
+            this.GcalGroupBox.Location = new System.Drawing.Point(12, 179);
             this.GcalGroupBox.Name = "GcalGroupBox";
-            this.GcalGroupBox.Size = new System.Drawing.Size(348, 57);
+            this.GcalGroupBox.Size = new System.Drawing.Size(348, 77);
             this.GcalGroupBox.TabIndex = 9;
             this.GcalGroupBox.TabStop = false;
             this.GcalGroupBox.Text = "Google Calendar";
@@ -182,7 +197,7 @@
             this.StatusLabel,
             this.toolStripStatusLabel2,
             this.StatusProgress});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 239);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 295);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(372, 22);
             this.statusStrip1.TabIndex = 10;
@@ -197,7 +212,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(271, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(315, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // StatusProgress
@@ -207,11 +222,21 @@
             this.StatusProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.StatusProgress.Visible = false;
             // 
+            // AllDayCheck
+            // 
+            this.AllDayCheck.AutoSize = true;
+            this.AllDayCheck.Location = new System.Drawing.Point(96, 54);
+            this.AllDayCheck.Name = "AllDayCheck";
+            this.AllDayCheck.Size = new System.Drawing.Size(125, 17);
+            this.AllDayCheck.TabIndex = 6;
+            this.AllDayCheck.Text = "Create all-day events";
+            this.AllDayCheck.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 261);
+            this.ClientSize = new System.Drawing.Size(372, 317);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.GcalGroupBox);
             this.Controls.Add(this.TraktGroupBox);
@@ -250,6 +275,8 @@
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripProgressBar StatusProgress;
+        private System.Windows.Forms.CheckBox IncludeSpecialsCheck;
+        private System.Windows.Forms.CheckBox AllDayCheck;
     }
 }
 

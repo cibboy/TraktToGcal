@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TraktToGcal.Trakt {
     class Episode {
@@ -12,11 +13,15 @@ namespace TraktToGcal.Trakt {
         public virtual string Overview { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("url")]
         public virtual string Url { get; set; }
+        [Newtonsoft.Json.JsonPropertyAttribute("first_aired_iso")]
+        public virtual DateTime Aired { get; set; }
     }
 
     class Show {
         [Newtonsoft.Json.JsonPropertyAttribute("title")]
         public virtual string Title { get; set; }
+        [Newtonsoft.Json.JsonPropertyAttribute("runtime")]
+        public virtual int Runtime { get; set; }
     }
 
     class EpisodeContainer {

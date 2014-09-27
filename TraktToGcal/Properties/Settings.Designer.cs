@@ -49,5 +49,23 @@ namespace TraktToGcal.Properties {
                 return ((string)(this["CalendarName"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IncludeSpecials {
+            get {
+                return ((bool)(this["IncludeSpecials"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CreateAllDayEvents {
+            get {
+                return ((bool)(this["CreateAllDayEvents"]));
+            }
+        }
     }
 }

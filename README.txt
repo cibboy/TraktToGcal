@@ -17,13 +17,11 @@ In order to work, the application requires the following:
 
 -- KNOWN BUGS --
 1) No complete error handling
-2) Loss of custom notifications for events that already exist and are updated
 
 -- TODO --
 The following is work still to be completed, in no specific order:
 1) Handling of all exceptions/error
 2) Better implementation of parallelism (currently the GUI is mostly frozen when working)
 3) Application icon
-4) Prevent loss of custom notifications for events that already exist and are updated
-5) Settings dialog with persistence
-6) More options/flexibility
+4) Settings dialog with persistence
+5) More options/flexibility

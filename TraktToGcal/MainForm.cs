@@ -35,11 +35,17 @@ namespace TraktToGcal {
             // Exclusions property.
             ExcludeTextBox.Text = Properties.Settings.Default.Exclusions.Replace(";", Environment.NewLine);
 
+            // Include specials property.
+            IncludeSpecialsCheck.Checked = Properties.Settings.Default.IncludeSpecials;
+
             // Calendar property.
             if (Properties.Settings.Default.CalendarName != "") {
                 CalendarCombo.Items.Add(Properties.Settings.Default.CalendarName);
                 CalendarCombo.Text = Properties.Settings.Default.CalendarName;
             }
+
+            // All-day events property.
+            AllDayCheck.Checked = Properties.Settings.Default.CreateAllDayEvents;
         }
 
         private async void ProceedButton_Click(object sender, EventArgs e) {
@@ -64,7 +70,7 @@ namespace TraktToGcal {
                 List<Entry> episodes = await TraktAccess.GetEpisodes(DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
 
                 // Update Google Calendar.
-                await CalendarUpdate.UpdateCalendarAsync(CalendarCombo.Text.ToLowerInvariant(), episodes, excludes);
+                await CalendarUpdate.UpdateCalendarAsync(CalendarCombo.Text.ToLowerInvariant(), episodes, excludes, IncludeSpecialsCheck.Checked, AllDayCheck.Checked);
 
                 // GUI operations.
                 ProceedButton.Enabled = true;
