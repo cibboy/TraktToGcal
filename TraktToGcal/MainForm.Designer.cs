@@ -35,12 +35,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.GcalGroupBox = new System.Windows.Forms.GroupBox();
+            this.AllDayCheck = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.AllDayCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -182,6 +182,16 @@
             this.GcalGroupBox.TabStop = false;
             this.GcalGroupBox.Text = "Google Calendar";
             // 
+            // AllDayCheck
+            // 
+            this.AllDayCheck.AutoSize = true;
+            this.AllDayCheck.Location = new System.Drawing.Point(96, 54);
+            this.AllDayCheck.Name = "AllDayCheck";
+            this.AllDayCheck.Size = new System.Drawing.Size(125, 17);
+            this.AllDayCheck.TabIndex = 6;
+            this.AllDayCheck.Text = "Create all-day events";
+            this.AllDayCheck.UseVisualStyleBackColor = true;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -221,16 +231,6 @@
             this.StatusProgress.Size = new System.Drawing.Size(100, 16);
             this.StatusProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.StatusProgress.Visible = false;
-            // 
-            // AllDayCheck
-            // 
-            this.AllDayCheck.AutoSize = true;
-            this.AllDayCheck.Location = new System.Drawing.Point(96, 54);
-            this.AllDayCheck.Name = "AllDayCheck";
-            this.AllDayCheck.Size = new System.Drawing.Size(125, 17);
-            this.AllDayCheck.TabIndex = 6;
-            this.AllDayCheck.Text = "Create all-day events";
-            this.AllDayCheck.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

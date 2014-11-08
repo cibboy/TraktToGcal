@@ -32,12 +32,12 @@ namespace TraktToGcal {
             if (detailsOpen) {
                 DetailsText.Visible = false;
                 this.Height -= 100;
-                DetailsButton.Text = "<< Details";
+                DetailsButton.Text = ">> Details";
             }
             else {
                 this.Height += 100;
                 DetailsText.Visible = true;
-                DetailsButton.Text = ">> Details";
+                DetailsButton.Text = "<< Details";
             }
 
             detailsOpen = !detailsOpen;

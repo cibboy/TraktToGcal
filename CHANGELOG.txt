@@ -8,3 +8,6 @@ Added error handling on main functions with custom error form. Not tested on err
 
 1.2.8.0
 Added two new options: exclusion of special episodes ("season 0" episodes) and possibility of creating events with a start and end time. Previous custom reminders shouldn't be lost anymore.
+
+1.3.10.0
+Search and Proceed buttons are both disabled when either one is clicked, in order to prevent concurrent remote operation.

@@ -57,6 +57,7 @@ namespace TraktToGcal {
 
                 // GUI operations.
                 ProceedButton.Enabled = false;
+                SearchButton.Enabled = false;
                 StatusLabel.Text = "Working...";
                 StatusProgress.Visible = true;
 
@@ -74,6 +75,7 @@ namespace TraktToGcal {
 
                 // GUI operations.
                 ProceedButton.Enabled = true;
+                SearchButton.Enabled = true;
                 StatusLabel.Text = "Done.";
                 StatusProgress.Visible = false;
             }
@@ -82,6 +84,7 @@ namespace TraktToGcal {
 
                 // GUI operations.
                 ProceedButton.Enabled = true;
+                SearchButton.Enabled = true;
                 StatusLabel.Text = "There's been an error.";
                 StatusProgress.Visible = false;
             }
@@ -91,6 +94,7 @@ namespace TraktToGcal {
             try {
                 // GUI operations.
                 SearchButton.Enabled = false;
+                ProceedButton.Enabled = false;
                 StatusLabel.Text = "Working...";
                 StatusProgress.Visible = true;
 
@@ -103,6 +107,7 @@ namespace TraktToGcal {
 
                 // GUI operations.
                 SearchButton.Enabled = true;
+                ProceedButton.Enabled = true;
                 StatusLabel.Text = "Done.";
                 StatusProgress.Visible = false;
             }
@@ -111,6 +116,7 @@ namespace TraktToGcal {
 
                 // GUI operations.
                 SearchButton.Enabled = true;
+                ProceedButton.Enabled = true;
                 StatusLabel.Text = "There's been an error.";
                 StatusProgress.Visible = false;
             }
