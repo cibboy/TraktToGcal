@@ -10,6 +10,10 @@ namespace TraktToGcal {
         public virtual string TraktApiKey { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("traktuser")]
         public virtual string TraktUser { get; set; }
+        [Newtonsoft.Json.JsonPropertyAttribute("traktpassword")]
+        public virtual string TraktPassword { get; set; }
+        [Newtonsoft.Json.JsonPropertyAttribute("trakthash")]
+        public virtual string TraktHash { get; set; }
 
         private static CustomCreds _instance = null;
 

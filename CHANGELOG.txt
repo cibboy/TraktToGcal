@@ -11,3 +11,6 @@ Added two new options: exclusion of special episodes ("season 0" episodes) and p
 
 1.3.10.0
 Search and Proceed buttons are both disabled when either one is clicked, in order to prevent concurrent remote operation.
+
+1.4.15.0
+Added private data access through clear text password (in config file) or base64 hash. Due to this new possibility, requests are now made through https.
