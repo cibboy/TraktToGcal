@@ -46,7 +46,7 @@ namespace TraktToGcal.Google {
                         req.Q = container.Show.Title + " " + container.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(container.Episode.Number);
 
                         // Create start date on show date from trakt.
-                        DateTime start = container.Episode.Aired.ToUniversalTime();
+                        DateTime start = container.Episode.Aired;
                         // Create end date adding episode duration.
                         DateTime end = start.AddMinutes(container.Show.Runtime);
 

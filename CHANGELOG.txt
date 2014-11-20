@@ -14,3 +14,6 @@ Search and Proceed buttons are both disabled when either one is clicked, in orde
 
 1.4.15.0
 Added private data access through clear text password (in config file) or base64 hash. Due to this new possibility, requests are now made through https.
+
+1.5.16.0
+Corrected a bug that transformed user's local time of the show into UTC time.
