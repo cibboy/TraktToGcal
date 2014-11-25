@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using TraktToGcal.Google;
 using TraktToGcal.Trakt;
 
 namespace TraktToGcal {
     public partial class MainForm : Form {
+        private DefaultProperties properties;
+        private Credentials credentials;
+
         public MainForm() {
-            Bitmap b = new Bitmap("cal.png");
-            this.Icon = Icon.FromHandle(b.GetHicon());
+            // If default settings are missing, immediately show settings page.
+            if (!Directory.Exists("settings") || !File.Exists("settings/settings.json") || !File.Exists("settings/credentials.json"))
+                new Settings().ShowDialog();
+
+            // Load default settings and credentials.
+            properties = DefaultProperties.Load();
+            credentials = Credentials.Load();
 
             InitializeComponent();
             CustomInitialize();
@@ -27,25 +36,27 @@ namespace TraktToGcal {
             DatePicker.Value = now;
 
             // Days lookahead property.
-            if (Properties.Settings.Default.DefaultLookaheadDays < 1)
+            if (properties.LookaheadDays < 1)
                 DaysTextBox.Value = 7;
             else
-                DaysTextBox.Value = Properties.Settings.Default.DefaultLookaheadDays;
+                DaysTextBox.Value = properties.LookaheadDays;
 
             // Exclusions property.
-            ExcludeTextBox.Text = Properties.Settings.Default.Exclusions.Replace(";", Environment.NewLine);
+            ExcludeTextBox.Text = "";
+            foreach(string s in properties.Exclusions)
+                ExcludeTextBox.Text += s + Environment.NewLine;
 
             // Include specials property.
-            IncludeSpecialsCheck.Checked = Properties.Settings.Default.IncludeSpecials;
+            IncludeSpecialsCheck.Checked = properties.IncludeSpecials;
 
             // Calendar property.
-            if (Properties.Settings.Default.CalendarName != "") {
-                CalendarCombo.Items.Add(Properties.Settings.Default.CalendarName);
-                CalendarCombo.Text = Properties.Settings.Default.CalendarName;
+            if (properties.CalendarName != "") {
+                CalendarCombo.Items.Add(properties.CalendarName);
+                CalendarCombo.Text = properties.CalendarName;
             }
 
             // All-day events property.
-            AllDayCheck.Checked = Properties.Settings.Default.CreateAllDayEvents;
+            AllDayCheck.Checked = properties.CreateAllDayEvents;
         }
 
         private async void ProceedButton_Click(object sender, EventArgs e) {
@@ -68,10 +79,10 @@ namespace TraktToGcal {
                     excludes.Add(ex.ToLowerInvariant());
 
                 // Load full list of episodes.
-                List<Entry> episodes = await TraktAccess.GetEpisodes(DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
+                List<Entry> episodes = await TraktAccess.GetEpisodes(credentials, DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
 
                 // Update Google Calendar.
-                await CalendarUpdate.UpdateCalendarAsync(CalendarCombo.Text.ToLowerInvariant(), episodes, excludes, IncludeSpecialsCheck.Checked, AllDayCheck.Checked);
+                await CalendarUpdate.UpdateCalendarAsync(credentials, CalendarCombo.Text.ToLowerInvariant(), episodes, excludes, IncludeSpecialsCheck.Checked, AllDayCheck.Checked);
 
                 // GUI operations.
                 ProceedButton.Enabled = true;
@@ -99,7 +110,7 @@ namespace TraktToGcal {
                 StatusProgress.Visible = true;
 
                 // Get list of calendars.
-                List<string> calendars = await CalendarUpdate.GetListOfCalendarsAsync();
+                List<string> calendars = await CalendarUpdate.GetListOfCalendarsAsync(credentials);
 
                 // Add list to combo box.
                 CalendarCombo.Items.Clear();
@@ -119,6 +130,14 @@ namespace TraktToGcal {
                 ProceedButton.Enabled = true;
                 StatusLabel.Text = "There's been an error.";
                 StatusProgress.Visible = false;
+            }
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e) {
+            if (new Settings().ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                // Reload properties and credentials for updated values (as of now, useful only for credentials).
+                properties = DefaultProperties.Load();
+                credentials = Credentials.Load();
             }
         }
     }

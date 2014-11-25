@@ -25,19 +25,14 @@ namespace TraktToGcal.Trakt {
             return hex;
         }
 
-        public static async Task<List<Entry>> GetEpisodes(DateTime From, int NumDays) {
+        public static async Task<List<Entry>> GetEpisodes(Credentials Creds, DateTime From, int NumDays) {
             // Convert from date for url.
             string date = From.ToString("yyyyMMdd");
 
-            CustomCreds creds = CustomCreds.GetInstance();
-
             // Load from trakt.
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api.trakt.tv/user/calendar/shows.json/" + creds.TraktApiKey + "/" + creds.TraktUser + "/" + date + "/" + NumDays);
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api.trakt.tv/user/calendar/shows.json/" + Creds.TraktApiKey + "/" + Creds.TraktUser + "/" + date + "/" + NumDays);
             // First check if there's a hash saved.
-            string hash = creds.TraktHash;
-            // If not, compute it from username and password, if present.
-            if (hash == "" && creds.TraktPassword != "")
-                hash = Convert.ToBase64String(Encoding.ASCII.GetBytes(creds.TraktUser + ":" + creds.TraktPassword));
+            string hash = Creds.TraktHash;
             // If hash has been computed, use it, otherwise go blind, the user may be asking for public data.
             if (hash != "")
                 request.Headers.Add("Authorization:Basic " + hash);

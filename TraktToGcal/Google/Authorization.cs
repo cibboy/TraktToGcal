@@ -7,33 +7,29 @@ using Google.Apis.Util.Store;
 
 namespace TraktToGcal.Google {
     class Authorization {
-        public static async Task<UserCredential> GetCredentialAsynch() {
-            CustomCreds creds = CustomCreds.GetInstance();
-
+        public static async Task<UserCredential> GetCredentialAsynch(Credentials Creds) {
             UserCredential credential;
-            using (var stream = new FileStream("credentials.cred/client.secrets.json", FileMode.Open, FileAccess.Read)) {
+            using (var stream = new FileStream("settings/googleauth.json", FileMode.Open, FileAccess.Read)) {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     new[] { CalendarService.Scope.Calendar },
-                    creds.GoogleUser,
+                    Creds.GoogleUser,
                     CancellationToken.None,
-                    new FileDataStore("credentials.cred", true)
+                    new FileDataStore("settings", true)
                 );
             }
 
             return credential;
         }
 
-        public static async Task<UserCredential> GetCredentialAsynch(string ClientId, string ClientSecret) {
-            CustomCreds creds = CustomCreds.GetInstance();
-
+        public static async Task<UserCredential> GetCredentialAsynch(Credentials Creds, string ClientId, string ClientSecret) {
             UserCredential credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets {
                         ClientId = ClientId,
                         ClientSecret = ClientSecret
                     },
                 new[] { CalendarService.Scope.Calendar },
-                creds.GoogleUser, CancellationToken.None, new FileDataStore("credentials.cred", true)
+                Creds.GoogleUser, CancellationToken.None, new FileDataStore("settings", true)
             );
 
             return credential;

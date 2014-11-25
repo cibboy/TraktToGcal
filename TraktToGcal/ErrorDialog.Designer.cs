@@ -53,7 +53,7 @@
             this.DetailsButton.Name = "DetailsButton";
             this.DetailsButton.Size = new System.Drawing.Size(75, 23);
             this.DetailsButton.TabIndex = 3;
-            this.DetailsButton.Text = ">> Details";
+            this.DetailsButton.Text = "Details >>";
             this.DetailsButton.UseVisualStyleBackColor = true;
             this.DetailsButton.Click += new System.EventHandler(this.DetailsButton_Click);
             // 

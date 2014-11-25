@@ -9,10 +9,10 @@ using TraktToGcal.Trakt;
 
 namespace TraktToGcal.Google {
     class CalendarUpdate {
-        public static async Task UpdateCalendarAsync(string CalendarName, List<Entry> Entries, List<string> Excludes, bool IncludeSpecials, bool AllDay) {
+        public static async Task UpdateCalendarAsync(Credentials Creds, string CalendarName, List<Entry> Entries, List<string> Excludes, bool IncludeSpecials, bool AllDay) {
             // Create the service.
             CalendarService service = new CalendarService(new BaseClientService.Initializer() {
-                HttpClientInitializer = await Authorization.GetCredentialAsynch(),
+                HttpClientInitializer = await Authorization.GetCredentialAsynch(Creds),
                 ApplicationName = "TraktToGcal",
             });
 
@@ -121,10 +121,10 @@ namespace TraktToGcal.Google {
             }
         }
 
-        public static async Task<List<string>> GetListOfCalendarsAsync() {
+        public static async Task<List<string>> GetListOfCalendarsAsync(Credentials Creds) {
             // Create the service.
             CalendarService service = new CalendarService(new BaseClientService.Initializer() {
-                HttpClientInitializer = await Authorization.GetCredentialAsynch(),
+                HttpClientInitializer = await Authorization.GetCredentialAsynch(Creds),
                 ApplicationName = "TraktToGcal",
             });
 

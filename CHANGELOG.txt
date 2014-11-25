@@ -17,3 +17,10 @@ Added private data access through clear text password (in config file) or base64
 
 1.5.16.0
 Corrected a bug that transformed user's local time of the show into UTC time.
+
+1.6.20.0
+- Changed default settings handling from xml file to json file
+- Changed custom file location to "settings" folder
+- Added window for live setting of default parameter and google/trakt credentials
+- Added complete (hopefully) error handling
+- Added missing license

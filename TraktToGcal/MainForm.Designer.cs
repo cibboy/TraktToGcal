@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.DaysTextBox = new System.Windows.Forms.NumericUpDown();
             this.ProceedButton = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.SettingsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -69,7 +71,7 @@
             // ProceedButton
             // 
             this.ProceedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProceedButton.Location = new System.Drawing.Point(279, 262);
+            this.ProceedButton.Location = new System.Drawing.Point(285, 262);
             this.ProceedButton.Name = "ProceedButton";
             this.ProceedButton.Size = new System.Drawing.Size(75, 23);
             this.ProceedButton.TabIndex = 7;
@@ -232,15 +234,28 @@
             this.StatusProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.StatusProgress.Visible = false;
             // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SettingsButton.Location = new System.Drawing.Point(12, 262);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(75, 23);
+            this.SettingsButton.TabIndex = 8;
+            this.SettingsButton.Text = "Settings";
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 317);
+            this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.GcalGroupBox);
             this.Controls.Add(this.TraktGroupBox);
             this.Controls.Add(this.ProceedButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(344, 299);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -277,6 +292,7 @@
         private System.Windows.Forms.ToolStripProgressBar StatusProgress;
         private System.Windows.Forms.CheckBox IncludeSpecialsCheck;
         private System.Windows.Forms.CheckBox AllDayCheck;
+        private System.Windows.Forms.Button SettingsButton;
     }
 }
 
