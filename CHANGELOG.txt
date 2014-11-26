@@ -26,4 +26,8 @@ Corrected a bug that transformed user's local time of the show into UTC time.
 - Added missing license
 
 1.7.21.0
-- Added --silent switch to run in GUI-less mode with configured default parameters and next Monday as starting day
+Added --silent switch to run in GUI-less mode with configured default parameters and next Monday as starting day
+
+1.7.22.1
+- Corrected --silent switch for truly silent operations (no prompts)
+- Corrected case sensitivity with --silent

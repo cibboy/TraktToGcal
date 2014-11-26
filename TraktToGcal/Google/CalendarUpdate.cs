@@ -29,7 +29,10 @@ namespace TraktToGcal.Google {
 
             // If no calendar matched, exit with warning to the user.
             if (id == null) {
-                MessageBox.Show("The calendar specified was not found!", "Calendar not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (!Program.Silent)
+                    MessageBox.Show("The calendar specified was not found!", "Calendar not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    Console.WriteLine("The calendar specified was not found!");
                 return;
             }
 
