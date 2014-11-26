@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TraktToGcal.Google;
 using TraktToGcal.Trakt;
@@ -138,6 +139,41 @@ namespace TraktToGcal {
                 // Reload properties and credentials for updated values (as of now, useful only for credentials).
                 properties = DefaultProperties.Load();
                 credentials = Credentials.Load();
+            }
+        }
+
+        public static async Task RunSilentAsync() {
+            DefaultProperties properties = DefaultProperties.Load();
+            Credentials credentials = Credentials.Load();
+
+            bool run = true;
+
+            while (run) {
+                try {
+                    // Compute date for following week.
+                    DateTime now = DateTime.Now;
+                    int d = (int)now.DayOfWeek;
+                    d = (8 - d) % 8;
+                    // Sunday is day 0, so we need to take care of it and map it onto Monday...
+                    if (d == 0)
+                        d++;
+                    now = now.AddDays(d);
+
+                    // Load full list of episodes.
+                    List<Entry> episodes = await TraktAccess.GetEpisodes(credentials, now, properties.LookaheadDays);
+
+                    // Update Google Calendar.
+                    await CalendarUpdate.UpdateCalendarAsync(credentials, properties.CalendarName, episodes, properties.Exclusions, properties.IncludeSpecials, properties.CreateAllDayEvents);
+
+                    run = false;
+                }
+                catch (Exception ex) {
+                    Console.WriteLine("There's been an error: " + ex.Message);
+                    Console.WriteLine();
+                    Console.WriteLine("Would you like to try again? (y/n)");
+                    if (Console.ReadLine().ToLower() != "y")
+                        run = false;
+                }
             }
         }
     }

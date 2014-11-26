@@ -16,6 +16,8 @@ In order to work, the application requires the following:
    If your account data on trakt is private, you need to specify your trakt password - it will be stored as a hash
 4) Save and enjoy
 
+Once properly configured, it can be run with the --silent switch (for example in a scheduled task) in order to execute its job without showing the GUI, using the default parameters and the next Monday as starting day.
+
 -- KNOWN BUGS --
 1) If the local machine's firewall blocks access to local ports using localhost, google authorization does not work
 

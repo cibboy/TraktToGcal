@@ -24,3 +24,6 @@ Corrected a bug that transformed user's local time of the show into UTC time.
 - Added window for live setting of default parameter and google/trakt credentials
 - Added complete (hopefully) error handling
 - Added missing license
+
+1.7.21.0
+- Added --silent switch to run in GUI-less mode with configured default parameters and next Monday as starting day
