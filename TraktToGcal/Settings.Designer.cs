@@ -37,6 +37,7 @@
             this.AllDayCheck = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TraktPwdTextbox = new System.Windows.Forms.TextBox();
             this.UpdatePwdCheckbox = new System.Windows.Forms.CheckBox();
             this.TraktAPIKeyTextbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.GoogleUserTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.TraktPwdTextbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -221,8 +221,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Security";
             // 
+            // TraktPwdTextbox
+            // 
+            this.TraktPwdTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TraktPwdTextbox.Enabled = false;
+            this.TraktPwdTextbox.Location = new System.Drawing.Point(96, 79);
+            this.TraktPwdTextbox.Name = "TraktPwdTextbox";
+            this.TraktPwdTextbox.PasswordChar = '*';
+            this.TraktPwdTextbox.Size = new System.Drawing.Size(179, 20);
+            this.TraktPwdTextbox.TabIndex = 9;
+            // 
             // UpdatePwdCheckbox
             // 
+            this.UpdatePwdCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdatePwdCheckbox.AutoSize = true;
             this.UpdatePwdCheckbox.Location = new System.Drawing.Point(281, 81);
             this.UpdatePwdCheckbox.Name = "UpdatePwdCheckbox";
@@ -306,22 +318,10 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
-            // TraktPwdTextbox
-            // 
-            this.TraktPwdTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TraktPwdTextbox.Enabled = false;
-            this.TraktPwdTextbox.Location = new System.Drawing.Point(96, 79);
-            this.TraktPwdTextbox.Name = "TraktPwdTextbox";
-            this.TraktPwdTextbox.PasswordChar = '*';
-            this.TraktPwdTextbox.Size = new System.Drawing.Size(179, 20);
-            this.TraktPwdTextbox.TabIndex = 9;
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(372, 417);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox1);
