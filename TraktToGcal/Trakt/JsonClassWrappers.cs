@@ -13,7 +13,7 @@ namespace TraktToGcal.Trakt {
         public virtual string Overview { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("url")]
         public virtual string Url { get; set; }
-        [Newtonsoft.Json.JsonPropertyAttribute("first_aired_iso")]
+        [Newtonsoft.Json.JsonPropertyAttribute("first_aired")]
         public virtual DateTime Aired { get; set; }
     }
 
@@ -24,17 +24,10 @@ namespace TraktToGcal.Trakt {
         public virtual int Runtime { get; set; }
     }
 
-    class EpisodeContainer {
+    class Entry {
         [Newtonsoft.Json.JsonPropertyAttribute("show")]
         public virtual Show Show { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("episode")]
         public virtual Episode Episode { get; set; }
-    }
-
-    class Entry {
-        [Newtonsoft.Json.JsonPropertyAttribute("date")]
-        public virtual string Date { get; set; }
-        [Newtonsoft.Json.JsonPropertyAttribute("episodes")]
-        public virtual List<EpisodeContainer> Episodes { get; set; }
     }
 }

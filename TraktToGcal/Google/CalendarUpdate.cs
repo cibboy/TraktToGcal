@@ -12,7 +12,7 @@ namespace TraktToGcal.Google {
         public static async Task UpdateCalendarAsync(Credentials Creds, string CalendarName, List<Entry> Entries, List<string> Excludes, bool IncludeSpecials, bool AllDay) {
             // Create the service.
             CalendarService service = new CalendarService(new BaseClientService.Initializer() {
-                HttpClientInitializer = await Authorization.GetCredentialAsynch(Creds),
+                HttpClientInitializer = await Authorization.GetCredentialAsync(Creds),
                 ApplicationName = "TraktToGcal",
             });
 
@@ -40,85 +40,83 @@ namespace TraktToGcal.Google {
             EventsResource.ListRequest req = service.Events.List(id);
 
             foreach (Entry entry in Entries) {
-                foreach (EpisodeContainer container in entry.Episodes) {
-                    // If episode is from show that I want to keep and is not a special (o specials are to be included), copy over to return list.
-                    if (!Excludes.Contains(container.Show.Title.ToLowerInvariant()) &&
-                        (IncludeSpecials || container.Episode.Season != 0)) {
+                // If episode is from show that I want to keep and is not a special (o specials are to be included), copy over to return list.
+                if (!Excludes.Contains(entry.Show.Title.ToLowerInvariant()) &&
+                    (IncludeSpecials || entry.Episode.Season != 0)) {
 
-                        // Query google calendar for same episode, if present.
-                        req.Q = container.Show.Title + " " + container.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(container.Episode.Number);
+                    // Query google calendar for same episode, if present.
+                    req.Q = entry.Show.Title + " " + entry.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(entry.Episode.Number);
 
-                        // Create start date on show date from trakt.
-                        DateTime start = container.Episode.Aired;
-                        // Create end date adding episode duration.
-                        DateTime end = start.AddMinutes(container.Show.Runtime);
+                    // Create start date on show date from trakt.
+                    DateTime start = entry.Episode.Aired;
+                    // Create end date adding episode duration.
+                    DateTime end = start.AddMinutes(entry.Show.Runtime);
 
-                        // Delete such events.
-                        IList<Event> list = req.Execute().Items;
-                        bool updated = false;
-                        foreach (Event ev in req.Execute().Items) {
-                            // Update all events that have the same title.
-                            if (ev.Summary == TraktAccess.CleanSeriesTitle(container.Show.Title) + " " + container.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(container.Episode.Number)) {
-                                // Reset start/end dates.
-                                ev.Start = new EventDateTime();
-                                ev.End = new EventDateTime();
-
-                                if (AllDay) {
-                                    // Set start and end date.
-                                    ev.Start.Date = start.ToString("yyyy-MM-dd");
-                                    // End date should be start date + 1 day.
-                                    ev.End.Date = start.AddDays(1).ToString("yyyy-MM-dd");
-                                }
-                                else {
-                                    // Set start and end date and time.
-                                    ev.Start.DateTime = start;
-                                    ev.End.DateTime = end;
-                                }
-
-                                // Set description.
-                                ev.Description = "--- " + container.Episode.Title + Environment.NewLine + container.Episode.Overview + Environment.NewLine + Environment.NewLine + container.Episode.Url;
-
-                                // Retrieve the event reminders.
-                                //foreach (EventReminder reminder in ev.Reminders) {
-                                //  String reminderMethod = reminder.Method;
-                                //  int minutes = reminder.Minutes;
-                                //}
-
-                                // Needed in case an event changes date (otherwise reminders are lost). Custom reminders may be lost anyway...
-                                //ev.Reminders.UseDefault = true;
-
-                                // Update event.
-                                service.Events.Update(ev, id, ev.Id).Execute();
-                                // Set updated flag to true.
-                                updated = true;
-                            }
-                        }
-                        // If updated flag is false, no event has been updated, so we need to create one.
-                        if (!updated) {
-                            // Create new event with start/end dates.
-                            Event evnt = new Event();
-                            evnt.Start = new EventDateTime();
-                            evnt.End = new EventDateTime();
+                    // Delete such events.
+                    IList<Event> list = req.Execute().Items;
+                    bool updated = false;
+                    foreach (Event ev in req.Execute().Items) {
+                        // Update all events that have the same title.
+                        if (ev.Summary == TraktAccess.CleanSeriesTitle(entry.Show.Title) + " " + entry.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(entry.Episode.Number)) {
+                            // Reset start/end dates.
+                            ev.Start = new EventDateTime();
+                            ev.End = new EventDateTime();
 
                             if (AllDay) {
                                 // Set start and end date.
-                                evnt.Start.Date = start.ToString("yyyy-MM-dd");
+                                ev.Start.Date = start.ToString("yyyy-MM-dd");
                                 // End date should be start date + 1 day.
-                                evnt.End.Date = start.AddDays(1).ToString("yyyy-MM-dd");
+                                ev.End.Date = start.AddDays(1).ToString("yyyy-MM-dd");
                             }
                             else {
                                 // Set start and end date and time.
-                                evnt.Start.DateTime = start;
-                                evnt.End.DateTime = end;
+                                ev.Start.DateTime = start;
+                                ev.End.DateTime = end;
                             }
 
-                            // Add title and descrition (with episode tite, overview and link).                            
-                            evnt.Summary = TraktAccess.CleanSeriesTitle(container.Show.Title) + " " + container.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(container.Episode.Number);
-                            evnt.Description = "--- " + container.Episode.Title + Environment.NewLine + container.Episode.Overview + Environment.NewLine + Environment.NewLine + container.Episode.Url;
+                            // Set description.
+                            ev.Description = "--- " + entry.Episode.Title + Environment.NewLine + entry.Episode.Overview + Environment.NewLine + Environment.NewLine + entry.Episode.Url;
 
-                            // Save event to google calendar.
-                            service.Events.Insert(evnt, id).Execute();
+                            // Retrieve the event reminders.
+                            //foreach (EventReminder reminder in ev.Reminders) {
+                            //  String reminderMethod = reminder.Method;
+                            //  int minutes = reminder.Minutes;
+                            //}
+
+                            // Needed in case an event changes date (otherwise reminders are lost). Custom reminders may be lost anyway...
+                            //ev.Reminders.UseDefault = true;
+
+                            // Update event.
+                            service.Events.Update(ev, id, ev.Id).Execute();
+                            // Set updated flag to true.
+                            updated = true;
                         }
+                    }
+                    // If updated flag is false, no event has been updated, so we need to create one.
+                    if (!updated) {
+                        // Create new event with start/end dates.
+                        Event evnt = new Event();
+                        evnt.Start = new EventDateTime();
+                        evnt.End = new EventDateTime();
+
+                        if (AllDay) {
+                            // Set start and end date.
+                            evnt.Start.Date = start.ToString("yyyy-MM-dd");
+                            // End date should be start date + 1 day.
+                            evnt.End.Date = start.AddDays(1).ToString("yyyy-MM-dd");
+                        }
+                        else {
+                            // Set start and end date and time.
+                            evnt.Start.DateTime = start;
+                            evnt.End.DateTime = end;
+                        }
+
+                        // Add title and descrition (with episode tite, overview and link).                            
+                        evnt.Summary = TraktAccess.CleanSeriesTitle(entry.Show.Title) + " " + entry.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(entry.Episode.Number);
+                        evnt.Description = "--- " + entry.Episode.Title + Environment.NewLine + entry.Episode.Overview + Environment.NewLine + Environment.NewLine + entry.Episode.Url;
+
+                        // Save event to google calendar.
+                        service.Events.Insert(evnt, id).Execute();
                     }
                 }
             }
@@ -127,7 +125,7 @@ namespace TraktToGcal.Google {
         public static async Task<List<string>> GetListOfCalendarsAsync(Credentials Creds) {
             // Create the service.
             CalendarService service = new CalendarService(new BaseClientService.Initializer() {
-                HttpClientInitializer = await Authorization.GetCredentialAsynch(Creds),
+                HttpClientInitializer = await Authorization.GetCredentialAsync(Creds),
                 ApplicationName = "TraktToGcal",
             });
 

@@ -7,7 +7,7 @@ using Google.Apis.Util.Store;
 
 namespace TraktToGcal.Google {
     class Authorization {
-        public static async Task<UserCredential> GetCredentialAsynch(Credentials Creds) {
+        public static async Task<UserCredential> GetCredentialAsync(Credentials Creds) {
             UserCredential credential;
             using (var stream = new FileStream("settings/googleauth.json", FileMode.Open, FileAccess.Read)) {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -22,7 +22,7 @@ namespace TraktToGcal.Google {
             return credential;
         }
 
-        public static async Task<UserCredential> GetCredentialAsynch(Credentials Creds, string ClientId, string ClientSecret) {
+        public static async Task<UserCredential> GetCredentialAsync(Credentials Creds, string ClientId, string ClientSecret) {
             UserCredential credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets {
                         ClientId = ClientId,
