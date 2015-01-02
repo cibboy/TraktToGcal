@@ -8,12 +8,12 @@ using TraktToGcal.Trakt;
 namespace TraktToGcal {
     public partial class Settings : Form {
         private DefaultProperties properties;
-        private Credentials credentials;
+        private TraktAuthorization traktAuth;
 
         public Settings() {
             // Load default settings and credentials.
             properties = DefaultProperties.Load();
-            credentials = Credentials.Load();
+            traktAuth = TraktAuthorization.Load();
 
             InitializeComponent();
             CustomInitialize();
@@ -44,9 +44,10 @@ namespace TraktToGcal {
             AllDayCheck.Checked = properties.CreateAllDayEvents;
 
             // Credential properties.
-            GoogleUserTextbox.Text = credentials.GoogleUser;
-            TraktUserTextbox.Text = credentials.TraktUser;
-            TraktAPIKeyTextbox.Text = credentials.TraktApiKey;
+            GoogleUserTextbox.Text = properties.GoogleUser;
+            TraktUserTextbox.Text = properties.TraktUser;
+            TraktClientIDTextbox.Text = traktAuth.ClientID;
+            TraktClientSecretTextbox.Text = traktAuth.ClientSecret;
         }
 
         private async void SearchButton_Click(object sender, EventArgs e) {
@@ -57,9 +58,9 @@ namespace TraktToGcal {
                 CancelButton.Enabled = false;
 
                 // Set google user in credentials, since it's going to be used for retrieval of calendar list.
-                credentials.GoogleUser = GoogleUserTextbox.Text;
+                properties.GoogleUser = GoogleUserTextbox.Text;
                 // Get list of calendars.
-                List<string> calendars = await CalendarUpdate.GetListOfCalendarsAsync(credentials);
+                List<string> calendars = await CalendarUpdate.GetListOfCalendarsAsync(properties);
 
                 // Add list to combo box.
                 CalendarCombo.Items.Clear();
@@ -86,7 +87,7 @@ namespace TraktToGcal {
 
             // Exclusions property.
             properties.Exclusions.Clear();
-            foreach (string s in ExcludeTextBox.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None))
+            foreach (string s in ExcludeTextBox.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
                 properties.Exclusions.Add(s);
 
             // Include specials property.
@@ -99,29 +100,16 @@ namespace TraktToGcal {
             properties.CreateAllDayEvents = AllDayCheck.Checked;
 
             // Credential properties.
-            credentials.GoogleUser = GoogleUserTextbox.Text;
-            credentials.TraktUser = TraktUserTextbox.Text;
-            credentials.TraktApiKey = TraktAPIKeyTextbox.Text;
-            
-            // Update hash only if update password is selected.
-            if (UpdatePwdCheckbox.Enabled) {
-                // Blank hash if password is not specified.
-                if (TraktPwdTextbox.Text == "")
-                    credentials.TraktHash = "";
-                // Compute hash otherwise.
-                else
-                    credentials.TraktHash = Credentials.ComputeHash(credentials.TraktUser, TraktPwdTextbox.Text);
-            }
+            properties.GoogleUser = GoogleUserTextbox.Text;
+            properties.TraktUser = TraktUserTextbox.Text;
+            traktAuth.ClientID = TraktClientIDTextbox.Text;
+            traktAuth.ClientSecret = TraktClientSecretTextbox.Text;
 
             properties.Save();
-            credentials.Save();
+            traktAuth.Save();
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
-        }
-
-        private void UpdatePwdCheckbox_CheckedChanged(object sender, EventArgs e) {
-            TraktPwdTextbox.Enabled = UpdatePwdCheckbox.Enabled;
         }
     }
 }

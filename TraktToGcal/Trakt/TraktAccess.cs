@@ -26,7 +26,13 @@ namespace TraktToGcal.Trakt {
             return hex;
         }
 
-        public static async Task<List<Entry>> GetEpisodes(Credentials Creds, DateTime From, int NumDays) {
+        public static async Task<List<Entry>> GetEpisodes(DefaultProperties Properties, DateTime From, int NumDays) {
+            // Load trakt authorization from file.
+            TraktAuthorization auth = TraktAuthorization.Load();
+            // Get an access token if not already present.
+            if (!(await auth.EnsureAccessTokenAsync(Properties)))
+                throw new Exception("There was a problem getting an access token for the trakt.tv api.");
+
             // Convert from date for url. Use 1 day earlier due to trakt API v2, where local air time (i.e. U.S. Pacific) is used to compare from date.
             string date = From.AddDays(-1).ToString("yyyyMMdd");
 
@@ -38,33 +44,9 @@ namespace TraktToGcal.Trakt {
             // Add proper headers.
             request.ContentType = "application/json";
             request.Headers.Add("trakt-api-version", "2");
-            request.Headers.Add("trakt-api-key", "");
-            request.Headers.Add("Authorization", "Bearer ");
+            request.Headers.Add("trakt-api-key", auth.ClientID);
+            request.Headers.Add("Authorization", "Bearer " + auth.AccessToken);
             request.ContentLength = 0;
-
-            /*var request = System.Net.WebRequest.Create("https://api.trakt.tv/oauth/token") as System.Net.HttpWebRequest;
-            request.KeepAlive = true;
-
-            request.Method = "POST";
-
-            request.ContentType = "application/json";
-
-            byte[] byteArray = System.Text.Encoding.UTF8.GetBytes("{" +
-              "\"code\": \"\"," +
-              "\"client_id\": \"\"," +
-              "\"client_secret\": \"\"," +
-              "\"redirect_uri\": \"urn:ietf:wg:oauth:2.0:oob\"," +
-              "\"grant_type\": \"refresh_token\"" +
-              "}"
-            );
-            request.ContentLength = byteArray.Length;
-            using (var writer = request.GetRequestStream()){writer.Write(byteArray, 0, byteArray.Length);}
-            string responseContent=null;
-            using (var response = request.GetResponse() as System.Net.HttpWebResponse) {
-              using (var reader = new System.IO.StreamReader(response.GetResponseStream())) {
-                responseContent = reader.ReadToEnd();
-              }
-            }*/
 
             List<Entry> ret = new List<Entry>();
             // Load from trakt.

@@ -10,7 +10,6 @@ using TraktToGcal.Trakt;
 namespace TraktToGcal {
     public partial class MainForm : Form {
         private DefaultProperties properties;
-        private Credentials credentials;
 
         public MainForm() {
             // If default settings are missing, immediately show settings page.
@@ -19,7 +18,6 @@ namespace TraktToGcal {
 
             // Load default settings and credentials.
             properties = DefaultProperties.Load();
-            credentials = Credentials.Load();
 
             InitializeComponent();
             CustomInitialize();
@@ -80,10 +78,10 @@ namespace TraktToGcal {
                     excludes.Add(ex.ToLowerInvariant());
 
                 // Load full list of episodes.
-                List<Entry> episodes = await TraktAccess.GetEpisodes(credentials, DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
+                List<Entry> episodes = await TraktAccess.GetEpisodes(properties, DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
 
                 // Update Google Calendar.
-                await CalendarUpdate.UpdateCalendarAsync(credentials, CalendarCombo.Text.ToLowerInvariant(), episodes, excludes, IncludeSpecialsCheck.Checked, AllDayCheck.Checked);
+                await CalendarUpdate.UpdateCalendarAsync(properties, CalendarCombo.Text.ToLowerInvariant(), episodes, excludes, IncludeSpecialsCheck.Checked, AllDayCheck.Checked);
 
                 // GUI operations.
                 ProceedButton.Enabled = true;
@@ -111,7 +109,7 @@ namespace TraktToGcal {
                 StatusProgress.Visible = true;
 
                 // Get list of calendars.
-                List<string> calendars = await CalendarUpdate.GetListOfCalendarsAsync(credentials);
+                List<string> calendars = await CalendarUpdate.GetListOfCalendarsAsync(properties);
 
                 // Add list to combo box.
                 CalendarCombo.Items.Clear();
@@ -136,15 +134,13 @@ namespace TraktToGcal {
 
         private void SettingsButton_Click(object sender, EventArgs e) {
             if (new Settings().ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                // Reload properties and credentials for updated values (as of now, useful only for credentials).
+                // Reload properties for updated values (as of now, not really useful).
                 properties = DefaultProperties.Load();
-                credentials = Credentials.Load();
             }
         }
 
         public static async Task<bool> RunSilentAsync() {
             DefaultProperties properties = DefaultProperties.Load();
-            Credentials credentials = Credentials.Load();
 
             try {
                 // Compute date for following week.
@@ -157,13 +153,13 @@ namespace TraktToGcal {
                 now = now.AddDays(d);
 
                 // Load full list of episodes.
-                List<Entry> episodes = await TraktAccess.GetEpisodes(credentials, now, properties.LookaheadDays);
+                List<Entry> episodes = await TraktAccess.GetEpisodes(properties, now, properties.LookaheadDays);
 
                 for (int i = 0; i < properties.Exclusions.Count; i++)
                     properties.Exclusions[i] = properties.Exclusions[i].ToLowerInvariant();
 
                 // Update Google Calendar.
-                await CalendarUpdate.UpdateCalendarAsync(credentials, properties.CalendarName.ToLowerInvariant(), episodes, properties.Exclusions, properties.IncludeSpecials, properties.CreateAllDayEvents);
+                await CalendarUpdate.UpdateCalendarAsync(properties, properties.CalendarName.ToLowerInvariant(), episodes, properties.Exclusions, properties.IncludeSpecials, properties.CreateAllDayEvents);
 
                 return true;
             }

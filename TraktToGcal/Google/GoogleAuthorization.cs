@@ -6,14 +6,14 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Util.Store;
 
 namespace TraktToGcal.Google {
-    class Authorization {
-        public static async Task<UserCredential> GetCredentialAsync(Credentials Creds) {
+    class GoogleAuthorization {
+        public static async Task<UserCredential> GetCredentialAsync(DefaultProperties Settings) {
             UserCredential credential;
             using (var stream = new FileStream("settings/googleauth.json", FileMode.Open, FileAccess.Read)) {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     new[] { CalendarService.Scope.Calendar },
-                    Creds.GoogleUser,
+                    Settings.GoogleUser,
                     CancellationToken.None,
                     new FileDataStore("settings", true)
                 );
@@ -22,14 +22,14 @@ namespace TraktToGcal.Google {
             return credential;
         }
 
-        public static async Task<UserCredential> GetCredentialAsync(Credentials Creds, string ClientId, string ClientSecret) {
+        public static async Task<UserCredential> GetCredentialAsync(DefaultProperties Settings, string ClientId, string ClientSecret) {
             UserCredential credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets {
                         ClientId = ClientId,
                         ClientSecret = ClientSecret
                     },
                 new[] { CalendarService.Scope.Calendar },
-                Creds.GoogleUser, CancellationToken.None, new FileDataStore("settings", true)
+                Settings.GoogleUser, CancellationToken.None, new FileDataStore("settings", true)
             );
 
             return credential;

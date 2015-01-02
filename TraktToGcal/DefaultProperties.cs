@@ -15,12 +15,20 @@ namespace TraktToGcal {
         [JsonPropertyAttribute("createalldayevents")]
         public virtual bool CreateAllDayEvents { get; set; }
 
+        [JsonPropertyAttribute("googleuser")]
+        public virtual string GoogleUser { get; set; }
+        [JsonPropertyAttribute("traktuser")]
+        public virtual string TraktUser { get; set; }
+
         public DefaultProperties() {
             LookaheadDays = 7;
             Exclusions = new List<string>();
             CalendarName = "";
             IncludeSpecials = false;
             CreateAllDayEvents = false;
+
+            GoogleUser = "";
+            TraktUser = "";
         }
 
         public static DefaultProperties Load() {

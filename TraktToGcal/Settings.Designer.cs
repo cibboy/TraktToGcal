@@ -37,9 +37,8 @@
             this.AllDayCheck = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TraktPwdTextbox = new System.Windows.Forms.TextBox();
-            this.UpdatePwdCheckbox = new System.Windows.Forms.CheckBox();
-            this.TraktAPIKeyTextbox = new System.Windows.Forms.TextBox();
+            this.TraktClientIDTextbox = new System.Windows.Forms.TextBox();
+            this.TraktClientSecretTextbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.TraktUserTextbox = new System.Windows.Forms.TextBox();
@@ -57,7 +56,7 @@
             // 
             this.DaysTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DaysTextBox.Location = new System.Drawing.Point(96, 19);
+            this.DaysTextBox.Location = new System.Drawing.Point(110, 19);
             this.DaysTextBox.Maximum = new decimal(new int[] {
             365,
             0,
@@ -88,11 +87,11 @@
             this.ExcludeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExcludeTextBox.Location = new System.Drawing.Point(96, 45);
+            this.ExcludeTextBox.Location = new System.Drawing.Point(110, 45);
             this.ExcludeTextBox.Multiline = true;
             this.ExcludeTextBox.Name = "ExcludeTextBox";
             this.ExcludeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ExcludeTextBox.Size = new System.Drawing.Size(246, 63);
+            this.ExcludeTextBox.Size = new System.Drawing.Size(232, 63);
             this.ExcludeTextBox.TabIndex = 2;
             // 
             // CalendarCombo
@@ -100,9 +99,9 @@
             this.CalendarCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CalendarCombo.FormattingEnabled = true;
-            this.CalendarCombo.Location = new System.Drawing.Point(96, 27);
+            this.CalendarCombo.Location = new System.Drawing.Point(110, 27);
             this.CalendarCombo.Name = "CalendarCombo";
-            this.CalendarCombo.Size = new System.Drawing.Size(165, 21);
+            this.CalendarCombo.Size = new System.Drawing.Size(151, 21);
             this.CalendarCombo.TabIndex = 4;
             // 
             // SearchButton
@@ -138,7 +137,7 @@
             this.IncludeSpecialsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IncludeSpecialsCheck.AutoSize = true;
-            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(96, 114);
+            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(110, 114);
             this.IncludeSpecialsCheck.Name = "IncludeSpecialsCheck";
             this.IncludeSpecialsCheck.Size = new System.Drawing.Size(104, 17);
             this.IncludeSpecialsCheck.TabIndex = 3;
@@ -185,7 +184,7 @@
             // AllDayCheck
             // 
             this.AllDayCheck.AutoSize = true;
-            this.AllDayCheck.Location = new System.Drawing.Point(96, 54);
+            this.AllDayCheck.Location = new System.Drawing.Point(110, 54);
             this.AllDayCheck.Name = "AllDayCheck";
             this.AllDayCheck.Size = new System.Drawing.Size(125, 17);
             this.AllDayCheck.TabIndex = 6;
@@ -205,9 +204,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.TraktPwdTextbox);
-            this.groupBox1.Controls.Add(this.UpdatePwdCheckbox);
-            this.groupBox1.Controls.Add(this.TraktAPIKeyTextbox);
+            this.groupBox1.Controls.Add(this.TraktClientIDTextbox);
+            this.groupBox1.Controls.Add(this.TraktClientSecretTextbox);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.TraktUserTextbox);
@@ -221,63 +219,50 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Security";
             // 
-            // TraktPwdTextbox
+            // TraktClientIDTextbox
             // 
-            this.TraktPwdTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TraktClientIDTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TraktPwdTextbox.Enabled = false;
-            this.TraktPwdTextbox.Location = new System.Drawing.Point(96, 79);
-            this.TraktPwdTextbox.Name = "TraktPwdTextbox";
-            this.TraktPwdTextbox.PasswordChar = '*';
-            this.TraktPwdTextbox.Size = new System.Drawing.Size(179, 20);
-            this.TraktPwdTextbox.TabIndex = 9;
+            this.TraktClientIDTextbox.Location = new System.Drawing.Point(110, 79);
+            this.TraktClientIDTextbox.Name = "TraktClientIDTextbox";
+            this.TraktClientIDTextbox.Size = new System.Drawing.Size(232, 20);
+            this.TraktClientIDTextbox.TabIndex = 9;
             // 
-            // UpdatePwdCheckbox
+            // TraktClientSecretTextbox
             // 
-            this.UpdatePwdCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdatePwdCheckbox.AutoSize = true;
-            this.UpdatePwdCheckbox.Location = new System.Drawing.Point(281, 81);
-            this.UpdatePwdCheckbox.Name = "UpdatePwdCheckbox";
-            this.UpdatePwdCheckbox.Size = new System.Drawing.Size(61, 17);
-            this.UpdatePwdCheckbox.TabIndex = 10;
-            this.UpdatePwdCheckbox.Text = "Update";
-            this.UpdatePwdCheckbox.UseVisualStyleBackColor = true;
-            this.UpdatePwdCheckbox.CheckedChanged += new System.EventHandler(this.UpdatePwdCheckbox_CheckedChanged);
-            // 
-            // TraktAPIKeyTextbox
-            // 
-            this.TraktAPIKeyTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TraktClientSecretTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TraktAPIKeyTextbox.Location = new System.Drawing.Point(96, 105);
-            this.TraktAPIKeyTextbox.Name = "TraktAPIKeyTextbox";
-            this.TraktAPIKeyTextbox.Size = new System.Drawing.Size(246, 20);
-            this.TraktAPIKeyTextbox.TabIndex = 11;
+            this.TraktClientSecretTextbox.Location = new System.Drawing.Point(110, 105);
+            this.TraktClientSecretTextbox.Name = "TraktClientSecretTextbox";
+            this.TraktClientSecretTextbox.PasswordChar = '*';
+            this.TraktClientSecretTextbox.Size = new System.Drawing.Size(232, 20);
+            this.TraktClientSecretTextbox.TabIndex = 11;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 108);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 106;
-            this.label7.Text = "Trakt API key:";
+            this.label7.Text = "Trakt Client Secret:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 82);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 105;
-            this.label6.Text = "Trakt password:";
+            this.label6.Text = "Trakt Client ID:";
             // 
             // TraktUserTextbox
             // 
             this.TraktUserTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TraktUserTextbox.Location = new System.Drawing.Point(96, 53);
+            this.TraktUserTextbox.Location = new System.Drawing.Point(110, 53);
             this.TraktUserTextbox.Name = "TraktUserTextbox";
-            this.TraktUserTextbox.Size = new System.Drawing.Size(246, 20);
+            this.TraktUserTextbox.Size = new System.Drawing.Size(232, 20);
             this.TraktUserTextbox.TabIndex = 8;
             // 
             // label4
@@ -293,9 +278,9 @@
             // 
             this.GoogleUserTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GoogleUserTextbox.Location = new System.Drawing.Point(96, 27);
+            this.GoogleUserTextbox.Location = new System.Drawing.Point(110, 27);
             this.GoogleUserTextbox.Name = "GoogleUserTextbox";
-            this.GoogleUserTextbox.Size = new System.Drawing.Size(246, 20);
+            this.GoogleUserTextbox.Size = new System.Drawing.Size(232, 20);
             this.GoogleUserTextbox.TabIndex = 7;
             // 
             // label1
@@ -363,12 +348,11 @@
         private System.Windows.Forms.TextBox TraktUserTextbox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox GoogleUserTextbox;
-        private System.Windows.Forms.TextBox TraktAPIKeyTextbox;
+        private System.Windows.Forms.TextBox TraktClientSecretTextbox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.CheckBox UpdatePwdCheckbox;
-        private System.Windows.Forms.TextBox TraktPwdTextbox;
+        private System.Windows.Forms.TextBox TraktClientIDTextbox;
     }
 }
 
