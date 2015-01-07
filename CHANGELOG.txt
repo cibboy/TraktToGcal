@@ -1,5 +1,8 @@
 ﻿-- CHANGELOG --
 
+2.1.56.0
+Corrected a regression in v2 for which urls were no longer added in the Google calendar event description.
+
 2.0.55.0
 - Updated to trakt API v2
   - Updated settings page for handling client ID and client secret for trakt oauth

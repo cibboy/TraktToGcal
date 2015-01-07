@@ -73,9 +73,9 @@ namespace TraktToGcal.Google {
                                 ev.Start.DateTime = start;
                                 ev.End.DateTime = end;
                             }
-
                             // Set description.
-                            ev.Description = "--- " + entry.Episode.Title + Environment.NewLine + entry.Episode.Overview + Environment.NewLine + Environment.NewLine + entry.Episode.Url;
+                            ev.Description = "--- " + entry.Episode.Title + Environment.NewLine + entry.Episode.Overview + Environment.NewLine + Environment.NewLine +
+                                "https://trakt.tv/episodes/" + entry.Episode.Ids.TraktId.Replace(":", "");
 
                             // Retrieve the event reminders.
                             //foreach (EventReminder reminder in ev.Reminders) {
@@ -113,7 +113,8 @@ namespace TraktToGcal.Google {
 
                         // Add title and descrition (with episode tite, overview and link).                            
                         evnt.Summary = TraktAccess.CleanSeriesTitle(entry.Show.Title) + " " + entry.Episode.Season + "x" + TraktAccess.GetProperEpisodeNumber(entry.Episode.Number);
-                        evnt.Description = "--- " + entry.Episode.Title + Environment.NewLine + entry.Episode.Overview + Environment.NewLine + Environment.NewLine + entry.Episode.Url;
+                        evnt.Description = "--- " + entry.Episode.Title + Environment.NewLine + entry.Episode.Overview + Environment.NewLine + Environment.NewLine +
+                            "https://trakt.tv/episodes/" + entry.Episode.Ids.TraktId.Replace(":", "");
 
                         // Save event to google calendar.
                         service.Events.Insert(evnt, id).Execute();

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 
 namespace TraktToGcal.Trakt {
+    class EpisodeId {
+        [Newtonsoft.Json.JsonPropertyAttribute("trakt")]
+        public virtual string TraktId { get; set; }
+    }
+
     class Episode {
         [Newtonsoft.Json.JsonPropertyAttribute("season")]
         public virtual int Season { get; set; }
@@ -11,8 +16,8 @@ namespace TraktToGcal.Trakt {
         public virtual string Title { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("overview")]
         public virtual string Overview { get; set; }
-        [Newtonsoft.Json.JsonPropertyAttribute("url")]
-        public virtual string Url { get; set; }
+        [Newtonsoft.Json.JsonPropertyAttribute("ids")]
+        public virtual EpisodeId Ids { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("first_aired")]
         public virtual DateTime Aired { get; set; }
     }
