@@ -23,7 +23,6 @@ I made it so that you can use your existing installation and switch between the 
 
 -- KNOWN BUGS --
 1) If the local machine's firewall blocks access to local ports using localhost, google authorization does not work
-2) Implementation of OAuth towards trakt doesn not consider token expiration and refresh at the moment, since it looks like no refresh token is returned and expiration date is several years in the future
 
 -- TODO --
 The following is work still to be completed, in no specific order:

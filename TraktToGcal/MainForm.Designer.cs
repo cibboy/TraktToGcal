@@ -236,7 +236,7 @@
             // 
             // SettingsButton
             // 
-            this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SettingsButton.Location = new System.Drawing.Point(12, 262);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(75, 23);

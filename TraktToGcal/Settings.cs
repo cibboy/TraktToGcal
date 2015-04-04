@@ -111,5 +111,19 @@ namespace TraktToGcal {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
+
+        private void ResetTraktAuthButton_Click(object sender, EventArgs e) {
+            if (MessageBox.Show("Are you sure you want to reset your trakt authorization codes? The operation is not reversible and future requests will require a new authorization!",
+                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                traktAuth.Authorization = "";
+                traktAuth.AccessToken = "";
+                traktAuth.RefreshToken = "";
+                traktAuth.Expiration = DateTime.UtcNow;
+
+                traktAuth.Save();
+
+                MessageBox.Show("Reset complete.", "Reset complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

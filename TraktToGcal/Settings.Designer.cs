@@ -46,6 +46,7 @@
             this.GoogleUserTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.ResetTraktAuthButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -54,8 +55,6 @@
             // 
             // DaysTextBox
             // 
-            this.DaysTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.DaysTextBox.Location = new System.Drawing.Point(110, 19);
             this.DaysTextBox.Maximum = new decimal(new int[] {
             365,
@@ -74,7 +73,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(204, 382);
+            this.SaveButton.Location = new System.Drawing.Point(198, 411);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 12;
@@ -91,7 +90,7 @@
             this.ExcludeTextBox.Multiline = true;
             this.ExcludeTextBox.Name = "ExcludeTextBox";
             this.ExcludeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ExcludeTextBox.Size = new System.Drawing.Size(232, 63);
+            this.ExcludeTextBox.Size = new System.Drawing.Size(232, 64);
             this.ExcludeTextBox.TabIndex = 2;
             // 
             // CalendarCombo
@@ -127,7 +126,7 @@
             this.TraktGroupBox.Controls.Add(this.ExcludeTextBox);
             this.TraktGroupBox.Location = new System.Drawing.Point(12, 12);
             this.TraktGroupBox.Name = "TraktGroupBox";
-            this.TraktGroupBox.Size = new System.Drawing.Size(348, 138);
+            this.TraktGroupBox.Size = new System.Drawing.Size(348, 139);
             this.TraktGroupBox.TabIndex = 8;
             this.TraktGroupBox.TabStop = false;
             this.TraktGroupBox.Text = "Trakt";
@@ -137,7 +136,7 @@
             this.IncludeSpecialsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IncludeSpecialsCheck.AutoSize = true;
-            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(110, 114);
+            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(110, 115);
             this.IncludeSpecialsCheck.Name = "IncludeSpecialsCheck";
             this.IncludeSpecialsCheck.Size = new System.Drawing.Size(104, 17);
             this.IncludeSpecialsCheck.TabIndex = 3;
@@ -174,7 +173,7 @@
             this.GcalGroupBox.Controls.Add(this.label5);
             this.GcalGroupBox.Controls.Add(this.SearchButton);
             this.GcalGroupBox.Controls.Add(this.CalendarCombo);
-            this.GcalGroupBox.Location = new System.Drawing.Point(12, 156);
+            this.GcalGroupBox.Location = new System.Drawing.Point(12, 157);
             this.GcalGroupBox.Name = "GcalGroupBox";
             this.GcalGroupBox.Size = new System.Drawing.Size(348, 77);
             this.GcalGroupBox.TabIndex = 9;
@@ -204,6 +203,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ResetTraktAuthButton);
             this.groupBox1.Controls.Add(this.TraktClientIDTextbox);
             this.groupBox1.Controls.Add(this.TraktClientSecretTextbox);
             this.groupBox1.Controls.Add(this.label7);
@@ -212,9 +212,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.GoogleUserTextbox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 239);
+            this.groupBox1.Location = new System.Drawing.Point(12, 240);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 135);
+            this.groupBox1.Size = new System.Drawing.Size(348, 163);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Security";
@@ -296,18 +296,29 @@
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(285, 382);
+            this.CancelButton.Location = new System.Drawing.Point(279, 411);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 13;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
+            // ResetTraktAuthButton
+            // 
+            this.ResetTraktAuthButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetTraktAuthButton.Location = new System.Drawing.Point(186, 131);
+            this.ResetTraktAuthButton.Name = "ResetTraktAuthButton";
+            this.ResetTraktAuthButton.Size = new System.Drawing.Size(156, 23);
+            this.ResetTraktAuthButton.TabIndex = 103;
+            this.ResetTraktAuthButton.Text = "Reset Trakt Authorization";
+            this.ResetTraktAuthButton.UseVisualStyleBackColor = true;
+            this.ResetTraktAuthButton.Click += new System.EventHandler(this.ResetTraktAuthButton_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 417);
+            this.ClientSize = new System.Drawing.Size(372, 446);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GcalGroupBox);
@@ -353,6 +364,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox TraktClientIDTextbox;
+        private System.Windows.Forms.Button ResetTraktAuthButton;
     }
 }
 
