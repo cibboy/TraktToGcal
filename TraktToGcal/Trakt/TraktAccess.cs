@@ -36,7 +36,7 @@ namespace TraktToGcal.Trakt {
             // Convert from date for url. Use 1 day earlier due to trakt API v2, where local air time (i.e. U.S. Pacific) is used to compare from date.
             string date = From.AddDays(-1).ToString("yyyyMMdd");
 
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api.trakt.tv/calendars/shows/" + date + "/" + NumDays + "?extended=full");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api-v2launch.trakt.tv/calendars/shows/" + date + "/" + NumDays + "?extended=full");
             request.KeepAlive = true;
 
             request.Method = "GET";

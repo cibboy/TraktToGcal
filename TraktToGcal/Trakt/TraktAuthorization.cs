@@ -43,7 +43,7 @@ namespace TraktToGcal.Trakt {
                     // If refresh token is non-existent, ask for new authorization code.
                     if (string.IsNullOrWhiteSpace(this.Authorization)) {
                         // Launch authorization url.
-                        Process.Start("https://trakt.tv/oauth/authorize?response_type=code&client_id=" + ClientID + "&redirect_uri=urn:ietf:wg:oauth:2.0:oob&username=" + Settings.TraktUser);
+                        Process.Start("https://api-v2launch.trakt.tv/oauth/authorize?response_type=code&client_id=" + ClientID + "&redirect_uri=urn:ietf:wg:oauth:2.0:oob&username=" + Settings.TraktUser);
                         // Wait for user to insert code.
                         AuthCodeInputDialog b = new AuthCodeInputDialog();
                         b.ShowDialog();
@@ -52,7 +52,7 @@ namespace TraktToGcal.Trakt {
                     }
 
                     // Create token request.
-                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api.trakt.tv/oauth/token");
+                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api-v2launch.trakt.tv/oauth/token");
                     request.KeepAlive = true;
                     request.Method = "POST";
                     request.ContentType = "application/json";

@@ -1,6 +1,9 @@
 ﻿-- CHANGELOG --
 
-2.1.63.2015
+2.3.68.2015
+Updated trakt url for authorization: due to recent changes to the api, the returned PIN wasn't compatible with the implemented authentication method.
+
+2.2.63.2015
 - Automatic refresh of trakt api tokens
 - Minor UI bug fixes
 
