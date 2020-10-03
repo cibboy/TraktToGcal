@@ -26,7 +26,7 @@ namespace TraktToGcal.Trakt {
         [Newtonsoft.Json.JsonPropertyAttribute("title")]
         public virtual string Title { get; set; }
         [Newtonsoft.Json.JsonPropertyAttribute("runtime")]
-        public virtual int Runtime { get; set; }
+        public virtual int? Runtime { get; set; }
     }
 
     class Entry {

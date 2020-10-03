@@ -50,7 +50,9 @@ namespace TraktToGcal.Google {
                     // Create start date on show date from trakt.
                     DateTime start = entry.Episode.Aired;
                     // Create end date adding episode duration.
-                    DateTime end = start.AddMinutes(entry.Show.Runtime);
+                    DateTime end = start.AddMinutes(45);
+                    if (entry.Show.Runtime.HasValue)
+                        end = start.AddMinutes(entry.Show.Runtime.Value);
 
                     // Delete such events.
                     IList<Event> list = req.Execute().Items;
