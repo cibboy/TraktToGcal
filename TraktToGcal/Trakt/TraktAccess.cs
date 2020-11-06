@@ -34,9 +34,9 @@ namespace TraktToGcal.Trakt {
                 throw new Exception("There was a problem getting an access token for the trakt.tv api.");
 
             // Convert from date for url. Use 1 day earlier due to trakt API v2, where local air time (i.e. U.S. Pacific) is used to compare from date.
-            string date = From.AddDays(-1).ToString("yyyyMMdd");
+            string date = From.AddDays(-1).ToString("yyyy-MM-dd");
 
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api-v2launch.trakt.tv/calendars/shows/" + date + "/" + NumDays + "?extended=full");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api.trakt.tv/calendars/my/shows/" + date + "/" + NumDays + "?extended=full");
             request.KeepAlive = true;
 
             request.Method = "GET";
@@ -48,15 +48,12 @@ namespace TraktToGcal.Trakt {
             request.Headers.Add("Authorization", "Bearer " + auth.AccessToken);
             request.ContentLength = 0;
 
-            List<Entry> ret = new List<Entry>();
             // Load from trakt.
             WebResponse response = await request.GetResponseAsync();
             // Parse entries.
-            Dictionary<string, List<Entry>> parsed = await JsonConvert.DeserializeObjectAsync<Dictionary<string, List<Entry>>>(new StreamReader(response.GetResponseStream()).ReadToEnd());
-            foreach (List<Entry> l in parsed.Values)
-                ret.AddRange(l);
+            List<Entry> parsed = await JsonConvert.DeserializeObjectAsync<List<Entry>>(new StreamReader(response.GetResponseStream()).ReadToEnd());
 
-            return ret;
+            return parsed;
         }
 
         public static string CleanSeriesTitle(string Title) {
