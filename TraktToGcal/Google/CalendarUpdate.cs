@@ -40,7 +40,7 @@ namespace TraktToGcal.Google {
             EventsResource.ListRequest req = service.Events.List(id);
 
             foreach (Entry entry in Entries) {
-                // If episode is from show that I want to keep and is not a special (o specials are to be included), copy over to return list.
+                // If episode is from show that I want to keep and is not a special (or specials are to be included), copy over to return list.
                 if (!Excludes.Contains(entry.Show.Title.ToLowerInvariant()) &&
                     (IncludeSpecials || entry.Episode.Season != 0)) {
 
