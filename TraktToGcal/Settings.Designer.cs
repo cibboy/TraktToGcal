@@ -37,6 +37,7 @@
             this.AllDayCheck = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ResetTraktAuthButton = new System.Windows.Forms.Button();
             this.TraktClientIDTextbox = new System.Windows.Forms.TextBox();
             this.TraktClientSecretTextbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -46,7 +47,9 @@
             this.GoogleUserTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.ResetTraktAuthButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.MovieReleaseCheck = new System.Windows.Forms.RadioButton();
+            this.DvdReleaseCheck = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -73,7 +76,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(198, 411);
+            this.SaveButton.Location = new System.Drawing.Point(201, 463);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 12;
@@ -90,7 +93,7 @@
             this.ExcludeTextBox.Multiline = true;
             this.ExcludeTextBox.Name = "ExcludeTextBox";
             this.ExcludeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ExcludeTextBox.Size = new System.Drawing.Size(232, 64);
+            this.ExcludeTextBox.Size = new System.Drawing.Size(235, 90);
             this.ExcludeTextBox.TabIndex = 2;
             // 
             // CalendarCombo
@@ -100,13 +103,13 @@
             this.CalendarCombo.FormattingEnabled = true;
             this.CalendarCombo.Location = new System.Drawing.Point(110, 27);
             this.CalendarCombo.Name = "CalendarCombo";
-            this.CalendarCombo.Size = new System.Drawing.Size(151, 21);
+            this.CalendarCombo.Size = new System.Drawing.Size(154, 21);
             this.CalendarCombo.TabIndex = 4;
             // 
             // SearchButton
             // 
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(267, 25);
+            this.SearchButton.Location = new System.Drawing.Point(270, 26);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 5;
@@ -119,6 +122,9 @@
             this.TraktGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TraktGroupBox.Controls.Add(this.DvdReleaseCheck);
+            this.TraktGroupBox.Controls.Add(this.MovieReleaseCheck);
+            this.TraktGroupBox.Controls.Add(this.label8);
             this.TraktGroupBox.Controls.Add(this.IncludeSpecialsCheck);
             this.TraktGroupBox.Controls.Add(this.label3);
             this.TraktGroupBox.Controls.Add(this.label2);
@@ -126,7 +132,7 @@
             this.TraktGroupBox.Controls.Add(this.ExcludeTextBox);
             this.TraktGroupBox.Location = new System.Drawing.Point(12, 12);
             this.TraktGroupBox.Name = "TraktGroupBox";
-            this.TraktGroupBox.Size = new System.Drawing.Size(348, 139);
+            this.TraktGroupBox.Size = new System.Drawing.Size(351, 191);
             this.TraktGroupBox.TabIndex = 8;
             this.TraktGroupBox.TabStop = false;
             this.TraktGroupBox.Text = "Trakt";
@@ -136,7 +142,7 @@
             this.IncludeSpecialsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IncludeSpecialsCheck.AutoSize = true;
-            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(110, 115);
+            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(109, 141);
             this.IncludeSpecialsCheck.Name = "IncludeSpecialsCheck";
             this.IncludeSpecialsCheck.Size = new System.Drawing.Size(104, 17);
             this.IncludeSpecialsCheck.TabIndex = 3;
@@ -150,20 +156,20 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 45);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 101;
-            this.label3.Text = "Exclusions:";
+            this.label3.Text = "Show exclusions:";
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 21);
+            this.label2.Location = new System.Drawing.Point(7, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 100;
-            this.label2.Text = "# days:";
+            this.label2.Text = "Num days:";
             // 
             // GcalGroupBox
             // 
@@ -173,9 +179,9 @@
             this.GcalGroupBox.Controls.Add(this.label5);
             this.GcalGroupBox.Controls.Add(this.SearchButton);
             this.GcalGroupBox.Controls.Add(this.CalendarCombo);
-            this.GcalGroupBox.Location = new System.Drawing.Point(12, 157);
+            this.GcalGroupBox.Location = new System.Drawing.Point(12, 209);
             this.GcalGroupBox.Name = "GcalGroupBox";
-            this.GcalGroupBox.Size = new System.Drawing.Size(348, 77);
+            this.GcalGroupBox.Size = new System.Drawing.Size(351, 77);
             this.GcalGroupBox.TabIndex = 9;
             this.GcalGroupBox.TabStop = false;
             this.GcalGroupBox.Text = "Google Calendar";
@@ -193,7 +199,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 30);
+            this.label5.Location = new System.Drawing.Point(7, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 102;
@@ -212,12 +218,23 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.GoogleUserTextbox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 240);
+            this.groupBox1.Location = new System.Drawing.Point(12, 292);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 163);
+            this.groupBox1.Size = new System.Drawing.Size(351, 163);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Security";
+            // 
+            // ResetTraktAuthButton
+            // 
+            this.ResetTraktAuthButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetTraktAuthButton.Location = new System.Drawing.Point(189, 131);
+            this.ResetTraktAuthButton.Name = "ResetTraktAuthButton";
+            this.ResetTraktAuthButton.Size = new System.Drawing.Size(156, 23);
+            this.ResetTraktAuthButton.TabIndex = 103;
+            this.ResetTraktAuthButton.Text = "Reset Trakt Authorization";
+            this.ResetTraktAuthButton.UseVisualStyleBackColor = true;
+            this.ResetTraktAuthButton.Click += new System.EventHandler(this.ResetTraktAuthButton_Click);
             // 
             // TraktClientIDTextbox
             // 
@@ -225,7 +242,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TraktClientIDTextbox.Location = new System.Drawing.Point(110, 79);
             this.TraktClientIDTextbox.Name = "TraktClientIDTextbox";
-            this.TraktClientIDTextbox.Size = new System.Drawing.Size(232, 20);
+            this.TraktClientIDTextbox.Size = new System.Drawing.Size(235, 20);
             this.TraktClientIDTextbox.TabIndex = 9;
             // 
             // TraktClientSecretTextbox
@@ -235,7 +252,7 @@
             this.TraktClientSecretTextbox.Location = new System.Drawing.Point(110, 105);
             this.TraktClientSecretTextbox.Name = "TraktClientSecretTextbox";
             this.TraktClientSecretTextbox.PasswordChar = '*';
-            this.TraktClientSecretTextbox.Size = new System.Drawing.Size(232, 20);
+            this.TraktClientSecretTextbox.Size = new System.Drawing.Size(235, 20);
             this.TraktClientSecretTextbox.TabIndex = 11;
             // 
             // label7
@@ -262,7 +279,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TraktUserTextbox.Location = new System.Drawing.Point(110, 53);
             this.TraktUserTextbox.Name = "TraktUserTextbox";
-            this.TraktUserTextbox.Size = new System.Drawing.Size(232, 20);
+            this.TraktUserTextbox.Size = new System.Drawing.Size(235, 20);
             this.TraktUserTextbox.TabIndex = 8;
             // 
             // label4
@@ -280,7 +297,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GoogleUserTextbox.Location = new System.Drawing.Point(110, 27);
             this.GoogleUserTextbox.Name = "GoogleUserTextbox";
-            this.GoogleUserTextbox.Size = new System.Drawing.Size(232, 20);
+            this.GoogleUserTextbox.Size = new System.Drawing.Size(235, 20);
             this.GoogleUserTextbox.TabIndex = 7;
             // 
             // label1
@@ -296,29 +313,53 @@
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(279, 411);
+            this.CancelButton.Location = new System.Drawing.Point(282, 463);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 13;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
-            // ResetTraktAuthButton
+            // label8
             // 
-            this.ResetTraktAuthButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetTraktAuthButton.Location = new System.Drawing.Point(186, 131);
-            this.ResetTraktAuthButton.Name = "ResetTraktAuthButton";
-            this.ResetTraktAuthButton.Size = new System.Drawing.Size(156, 23);
-            this.ResetTraktAuthButton.TabIndex = 103;
-            this.ResetTraktAuthButton.Text = "Reset Trakt Authorization";
-            this.ResetTraktAuthButton.UseVisualStyleBackColor = true;
-            this.ResetTraktAuthButton.Click += new System.EventHandler(this.ResetTraktAuthButton_Click);
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 166);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 13);
+            this.label8.TabIndex = 102;
+            this.label8.Text = "Movies:";
+            // 
+            // MovieReleaseCheck
+            // 
+            this.MovieReleaseCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.MovieReleaseCheck.AutoSize = true;
+            this.MovieReleaseCheck.Checked = true;
+            this.MovieReleaseCheck.Location = new System.Drawing.Point(109, 164);
+            this.MovieReleaseCheck.Name = "MovieReleaseCheck";
+            this.MovieReleaseCheck.Size = new System.Drawing.Size(123, 17);
+            this.MovieReleaseCheck.TabIndex = 103;
+            this.MovieReleaseCheck.TabStop = true;
+            this.MovieReleaseCheck.Text = "Theater release date";
+            this.MovieReleaseCheck.UseVisualStyleBackColor = true;
+            // 
+            // DvdReleaseCheck
+            // 
+            this.DvdReleaseCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DvdReleaseCheck.AutoSize = true;
+            this.DvdReleaseCheck.Location = new System.Drawing.Point(238, 164);
+            this.DvdReleaseCheck.Name = "DvdReleaseCheck";
+            this.DvdReleaseCheck.Size = new System.Drawing.Size(109, 17);
+            this.DvdReleaseCheck.TabIndex = 104;
+            this.DvdReleaseCheck.Text = "DVD release date";
+            this.DvdReleaseCheck.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 446);
+            this.ClientSize = new System.Drawing.Size(375, 498);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GcalGroupBox);
@@ -365,6 +406,9 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox TraktClientIDTextbox;
         private System.Windows.Forms.Button ResetTraktAuthButton;
+        private System.Windows.Forms.RadioButton DvdReleaseCheck;
+        private System.Windows.Forms.RadioButton MovieReleaseCheck;
+        private System.Windows.Forms.Label label8;
     }
 }
 

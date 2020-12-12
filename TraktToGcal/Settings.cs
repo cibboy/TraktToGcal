@@ -34,6 +34,10 @@ namespace TraktToGcal {
             // Include specials property.
             IncludeSpecialsCheck.Checked = properties.IncludeSpecials;
 
+            // Movie property.
+            MovieReleaseCheck.Checked = !properties.MovieDvdReleases;
+            DvdReleaseCheck.Checked = properties.MovieDvdReleases;
+
             // Calendar property.
             if (properties.CalendarName != "") {
                 CalendarCombo.Items.Add(properties.CalendarName);
@@ -92,6 +96,9 @@ namespace TraktToGcal {
 
             // Include specials property.
             properties.IncludeSpecials = IncludeSpecialsCheck.Checked;
+
+            // Movie property.
+            properties.MovieDvdReleases = DvdReleaseCheck.Checked;
 
             // Calendar property.
             properties.CalendarName = CalendarCombo.Text;

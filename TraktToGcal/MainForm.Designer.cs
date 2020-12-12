@@ -43,6 +43,9 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.SettingsButton = new System.Windows.Forms.Button();
+            this.DvdReleaseCheck = new System.Windows.Forms.RadioButton();
+            this.MovieReleaseCheck = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DaysTextBox)).BeginInit();
             this.TraktGroupBox.SuspendLayout();
             this.GcalGroupBox.SuspendLayout();
@@ -71,7 +74,7 @@
             // ProceedButton
             // 
             this.ProceedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProceedButton.Location = new System.Drawing.Point(285, 262);
+            this.ProceedButton.Location = new System.Drawing.Point(285, 307);
             this.ProceedButton.Name = "ProceedButton";
             this.ProceedButton.Size = new System.Drawing.Size(75, 23);
             this.ProceedButton.TabIndex = 7;
@@ -88,7 +91,7 @@
             this.ExcludeTextBox.Multiline = true;
             this.ExcludeTextBox.Name = "ExcludeTextBox";
             this.ExcludeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ExcludeTextBox.Size = new System.Drawing.Size(246, 61);
+            this.ExcludeTextBox.Size = new System.Drawing.Size(246, 81);
             this.ExcludeTextBox.TabIndex = 2;
             // 
             // CalendarCombo
@@ -104,7 +107,7 @@
             // SearchButton
             // 
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Location = new System.Drawing.Point(267, 25);
+            this.SearchButton.Location = new System.Drawing.Point(267, 26);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 5;
@@ -117,6 +120,9 @@
             this.TraktGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TraktGroupBox.Controls.Add(this.DvdReleaseCheck);
+            this.TraktGroupBox.Controls.Add(this.MovieReleaseCheck);
+            this.TraktGroupBox.Controls.Add(this.label8);
             this.TraktGroupBox.Controls.Add(this.IncludeSpecialsCheck);
             this.TraktGroupBox.Controls.Add(this.label3);
             this.TraktGroupBox.Controls.Add(this.label2);
@@ -126,7 +132,7 @@
             this.TraktGroupBox.Controls.Add(this.ExcludeTextBox);
             this.TraktGroupBox.Location = new System.Drawing.Point(12, 12);
             this.TraktGroupBox.Name = "TraktGroupBox";
-            this.TraktGroupBox.Size = new System.Drawing.Size(348, 161);
+            this.TraktGroupBox.Size = new System.Drawing.Size(348, 206);
             this.TraktGroupBox.TabIndex = 8;
             this.TraktGroupBox.TabStop = false;
             this.TraktGroupBox.Text = "Trakt";
@@ -135,7 +141,7 @@
             // 
             this.IncludeSpecialsCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.IncludeSpecialsCheck.AutoSize = true;
-            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(96, 138);
+            this.IncludeSpecialsCheck.Location = new System.Drawing.Point(96, 158);
             this.IncludeSpecialsCheck.Name = "IncludeSpecialsCheck";
             this.IncludeSpecialsCheck.Size = new System.Drawing.Size(104, 17);
             this.IncludeSpecialsCheck.TabIndex = 3;
@@ -154,11 +160,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 47);
+            this.label2.Location = new System.Drawing.Point(7, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "# days:";
+            this.label2.Text = "Num days:";
             // 
             // label1
             // 
@@ -177,7 +183,7 @@
             this.GcalGroupBox.Controls.Add(this.label5);
             this.GcalGroupBox.Controls.Add(this.SearchButton);
             this.GcalGroupBox.Controls.Add(this.CalendarCombo);
-            this.GcalGroupBox.Location = new System.Drawing.Point(12, 179);
+            this.GcalGroupBox.Location = new System.Drawing.Point(12, 224);
             this.GcalGroupBox.Name = "GcalGroupBox";
             this.GcalGroupBox.Size = new System.Drawing.Size(348, 77);
             this.GcalGroupBox.TabIndex = 9;
@@ -197,7 +203,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 30);
+            this.label5.Location = new System.Drawing.Point(7, 30);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 8;
@@ -209,7 +215,7 @@
             this.StatusLabel,
             this.toolStripStatusLabel2,
             this.StatusProgress});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 295);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 340);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(372, 22);
             this.statusStrip1.TabIndex = 10;
@@ -237,7 +243,7 @@
             // SettingsButton
             // 
             this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SettingsButton.Location = new System.Drawing.Point(12, 262);
+            this.SettingsButton.Location = new System.Drawing.Point(12, 307);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(75, 23);
             this.SettingsButton.TabIndex = 8;
@@ -245,11 +251,46 @@
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
+            // DvdReleaseCheck
+            // 
+            this.DvdReleaseCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DvdReleaseCheck.AutoSize = true;
+            this.DvdReleaseCheck.Location = new System.Drawing.Point(225, 181);
+            this.DvdReleaseCheck.Name = "DvdReleaseCheck";
+            this.DvdReleaseCheck.Size = new System.Drawing.Size(109, 17);
+            this.DvdReleaseCheck.TabIndex = 107;
+            this.DvdReleaseCheck.Text = "DVD release date";
+            this.DvdReleaseCheck.UseVisualStyleBackColor = true;
+            // 
+            // MovieReleaseCheck
+            // 
+            this.MovieReleaseCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.MovieReleaseCheck.AutoSize = true;
+            this.MovieReleaseCheck.Checked = true;
+            this.MovieReleaseCheck.Location = new System.Drawing.Point(96, 181);
+            this.MovieReleaseCheck.Name = "MovieReleaseCheck";
+            this.MovieReleaseCheck.Size = new System.Drawing.Size(123, 17);
+            this.MovieReleaseCheck.TabIndex = 106;
+            this.MovieReleaseCheck.TabStop = true;
+            this.MovieReleaseCheck.Text = "Theater release date";
+            this.MovieReleaseCheck.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 185);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 13);
+            this.label8.TabIndex = 105;
+            this.label8.Text = "Movies:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 317);
+            this.ClientSize = new System.Drawing.Size(372, 362);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.GcalGroupBox);
@@ -293,6 +334,9 @@
         private System.Windows.Forms.CheckBox IncludeSpecialsCheck;
         private System.Windows.Forms.CheckBox AllDayCheck;
         private System.Windows.Forms.Button SettingsButton;
+        private System.Windows.Forms.RadioButton DvdReleaseCheck;
+        private System.Windows.Forms.RadioButton MovieReleaseCheck;
+        private System.Windows.Forms.Label label8;
     }
 }
 

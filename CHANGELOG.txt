@@ -1,5 +1,14 @@
 ﻿-- CHANGELOG --
 
+2.4.71.2020
+Added support for movies (theater or DVD release).
+
+2.3.70.2020
+Updated Trakt API v2 urls and methods.
+
+2.3.69.2020
+Corrected bug when show runtime is null instead of integer value.
+
 2.3.68.2015
 Updated trakt url for authorization: due to recent changes to the api, the returned PIN wasn't compatible with the implemented authentication method.
 
