@@ -8,10 +8,12 @@ namespace TraktToGcal {
         public virtual int LookaheadDays { get; set; }
         [JsonPropertyAttribute("exclusions")]
         public virtual List<string> Exclusions { get; set; }
-        [JsonPropertyAttribute("calendarname")]
-        public virtual string CalendarName { get; set; }
         [JsonPropertyAttribute("includespecials")]
         public virtual bool IncludeSpecials { get; set; }
+        [JsonPropertyAttribute("moviedvdreleases")]
+        public virtual bool MovieDvdReleases { get; set; }
+        [JsonPropertyAttribute("calendarname")]
+        public virtual string CalendarName { get; set; }
         [JsonPropertyAttribute("createalldayevents")]
         public virtual bool CreateAllDayEvents { get; set; }
 
@@ -23,8 +25,9 @@ namespace TraktToGcal {
         public DefaultProperties() {
             LookaheadDays = 7;
             Exclusions = new List<string>();
-            CalendarName = "";
             IncludeSpecials = false;
+            MovieDvdReleases = false;
+            CalendarName = "";
             CreateAllDayEvents = false;
 
             GoogleUser = "";

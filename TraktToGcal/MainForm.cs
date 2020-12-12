@@ -48,6 +48,10 @@ namespace TraktToGcal {
             // Include specials property.
             IncludeSpecialsCheck.Checked = properties.IncludeSpecials;
 
+            // Movie property.
+            MovieReleaseCheck.Checked = !properties.MovieDvdReleases;
+            DvdReleaseCheck.Checked = properties.MovieDvdReleases;
+
             // Calendar property.
             if (properties.CalendarName != "") {
                 CalendarCombo.Items.Add(properties.CalendarName);
@@ -77,11 +81,17 @@ namespace TraktToGcal {
                 foreach (string ex in exs)
                     excludes.Add(ex.ToLowerInvariant());
 
+                // Get movie release type.
+                bool dvd = DvdReleaseCheck.Checked;
+
                 // Load full list of episodes.
-                List<Entry> episodes = await TraktAccess.GetEpisodes(properties, DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
+                List<EpisodeEntry> episodes = await TraktAccess.GetEpisodes(properties, DatePicker.Value, Convert.ToInt32(DaysTextBox.Value));
+                // Load full list of movies.
+                List<MovieEntry> movies = await TraktAccess.GetMovies(properties, DatePicker.Value, Convert.ToInt32(DaysTextBox.Value), dvd);
 
                 // Update Google Calendar.
                 await CalendarUpdate.UpdateCalendarAsync(properties, CalendarCombo.Text.ToLowerInvariant(), episodes, excludes, IncludeSpecialsCheck.Checked, AllDayCheck.Checked);
+                await CalendarUpdate.UpdateCalendarAsync(properties, CalendarCombo.Text.ToLowerInvariant(), movies);
 
                 // GUI operations.
                 ProceedButton.Enabled = true;
@@ -153,13 +163,16 @@ namespace TraktToGcal {
                 now = now.AddDays(d);
 
                 // Load full list of episodes.
-                List<Entry> episodes = await TraktAccess.GetEpisodes(properties, now, properties.LookaheadDays);
+                List<EpisodeEntry> episodes = await TraktAccess.GetEpisodes(properties, now, properties.LookaheadDays);
+                // Load full list of movies.
+                List<MovieEntry> movies = await TraktAccess.GetMovies(properties, now, properties.LookaheadDays, properties.MovieDvdReleases);
 
                 for (int i = 0; i < properties.Exclusions.Count; i++)
                     properties.Exclusions[i] = properties.Exclusions[i].ToLowerInvariant();
 
                 // Update Google Calendar.
                 await CalendarUpdate.UpdateCalendarAsync(properties, properties.CalendarName.ToLowerInvariant(), episodes, properties.Exclusions, properties.IncludeSpecials, properties.CreateAllDayEvents);
+                await CalendarUpdate.UpdateCalendarAsync(properties, properties.CalendarName.ToLowerInvariant(), movies);
 
                 return true;
             }
