@@ -11,7 +11,7 @@ namespace TraktToGcal.Google {
             UserCredential credential;
             using (var stream = new FileStream("settings/googleauth.json", FileMode.Open, FileAccess.Read)) {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
+                    GoogleClientSecrets.FromStream(stream).Secrets,
                     new[] { CalendarService.Scope.Calendar },
                     Settings.GoogleUser,
                     CancellationToken.None,

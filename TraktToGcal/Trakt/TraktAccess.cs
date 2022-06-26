@@ -35,7 +35,7 @@ namespace TraktToGcal.Trakt {
             // Load from trakt.
             WebResponse response = await request.GetResponseAsync();
             // Parse entries.
-            List<EpisodeEntry> parsed = await JsonConvert.DeserializeObjectAsync<List<EpisodeEntry>>(new StreamReader(response.GetResponseStream()).ReadToEnd());
+            List<EpisodeEntry> parsed = JsonConvert.DeserializeObject<List<EpisodeEntry>>(new StreamReader(response.GetResponseStream()).ReadToEnd());
 
             return parsed;
         }
@@ -71,7 +71,7 @@ namespace TraktToGcal.Trakt {
             // Load from trakt.
             WebResponse response = await request.GetResponseAsync();
             // Parse entries.
-            List<MovieEntry> parsed = await JsonConvert.DeserializeObjectAsync<List<MovieEntry>>(new StreamReader(response.GetResponseStream()).ReadToEnd());
+            List<MovieEntry> parsed = JsonConvert.DeserializeObject<List<MovieEntry>>(new StreamReader(response.GetResponseStream()).ReadToEnd());
 
             return parsed;
         }
