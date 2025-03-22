@@ -30,6 +30,7 @@ namespace TraktToGcal.Trakt {
             request.Headers.Add("trakt-api-version", "2");
             request.Headers.Add("trakt-api-key", auth.ClientID);
             request.Headers.Add("Authorization", "Bearer " + auth.AccessToken);
+            request.UserAgent = "TraktToGcal";
             request.ContentLength = 0;
 
             // Load from trakt.
@@ -66,6 +67,7 @@ namespace TraktToGcal.Trakt {
             request.Headers.Add("trakt-api-version", "2");
             request.Headers.Add("trakt-api-key", auth.ClientID);
             request.Headers.Add("Authorization", "Bearer " + auth.AccessToken);
+            request.UserAgent = "TraktToGcal";
             request.ContentLength = 0;
 
             // Load from trakt.

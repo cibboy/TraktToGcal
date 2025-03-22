@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -52,33 +51,41 @@ namespace TraktToGcal.Trakt {
                     }
 
                     // Create token request.
-                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://api.trakt.tv/oauth/token");
-                    request.KeepAlive = true;
-                    request.Method = "POST";
-                    request.ContentType = "application/json";
+                    using (var client = new HttpClient()) {
+                        client.BaseAddress = new Uri("https://api.trakt.tv/");
+                        client.DefaultRequestHeaders.Accept.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        client.DefaultRequestHeaders.Add("User-Agent", "TraktToGcal");
 
-                    // Prepare post payload.
-                    string payload = "{" +
-                        "\"code\": \"" + code + "\"," +
-                        "\"client_id\": \"" + ClientID + "\"," +
-                        "\"client_secret\": \"" + ClientSecret + "\"," +
-                        "\"redirect_uri\": \"urn:ietf:wg:oauth:2.0:oob\",";
-                    if (string.IsNullOrWhiteSpace(this.RefreshToken))
-                        payload += "\"grant_type\": \"authorization_code\"";
-                    else {
-                        payload += "\"grant_type\": \"refresh_token\",";
-                        payload += "\"refresh_token\": \"" + this.RefreshToken + "\"";
-                    }
-                    payload += "}";
+                        // Prepare post payload.
+                        string payload;
+                        if (string.IsNullOrWhiteSpace(RefreshToken)) {
+                            payload = JsonConvert.SerializeObject(new {
+                                code,
+                                client_id = ClientID,
+                                client_secret = ClientSecret,
+                                redirect_uri = "urn:ietf:wg:oauth:2.0:oob",
+                                grant_type = "authorization_code"
+                            });
+                        }
+                        else {
+                            payload = JsonConvert.SerializeObject(new {
+                                code,
+                                client_id = ClientID,
+                                client_secret = ClientSecret,
+                                redirect_uri = "urn:ietf:wg:oauth:2.0:oob",
+                                grant_type = "refresh_token",
+                                refresh_token = RefreshToken
+                            });
+                        }
 
-                    byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(payload);
-                    request.ContentLength = byteArray.Length;
-                    using (var writer = request.GetRequestStream()) { writer.Write(byteArray, 0, byteArray.Length); }
-                    // Get authorization code.
-                    using (var response = await request.GetResponseAsync() as System.Net.HttpWebResponse) {
-                        using (var reader = new System.IO.StreamReader(response.GetResponseStream())) {
-                            JObject o = JObject.Parse(reader.ReadToEnd());
-                            
+                        HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
+                        HttpResponseMessage response = await client.PostAsync("oauth/token", content);
+
+                        if (response.IsSuccessStatusCode) {
+                            string res = await response.Content.ReadAsStringAsync();
+                            JObject o = JObject.Parse(res);
+
                             // Read return json and store tokens and expiration.
                             AccessToken = (string)o["access_token"];
                             RefreshToken = (string)o["refresh_token"];
@@ -87,11 +94,11 @@ namespace TraktToGcal.Trakt {
                             Expiration = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                             Expiration = Expiration.AddSeconds((long)o["created_at"]);
                             Expiration = Expiration.AddSeconds((long)o["expires_in"]);
+
+                            // Save file with access token for later use.
+                            Save();
                         }
                     }
-
-                    // Save file with access token for later use.
-                    Save();
                 }
 
                 if (string.IsNullOrWhiteSpace(AccessToken))
