@@ -52,7 +52,7 @@ namespace TraktToGcal.Trakt {
 
                     // Create token request.
                     using (var client = new HttpClient()) {
-                        client.BaseAddress = new Uri("https://api.trakt.tv/");
+                        client.BaseAddress = new Uri("https://api.trakt.tv/oauth/token");
                         client.DefaultRequestHeaders.Accept.Clear();
                         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                         client.DefaultRequestHeaders.Add("User-Agent", "TraktToGcal");
